@@ -1,0 +1,90 @@
+{
+  "name": "eslint-plugin-budapestian",
+  "version": "0.0.1",
+  "description": "enforce budapestian style rules",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "main": "lib/index.js",
+  "author": "Sander Verweij (https://sverweij.github.io/)",
+  "bugs": {
+    "url": "https://github.com/sverweij/eslint-plugin-budapestian/issues"
+  },
+  "homepage": "https://github.com/sverweij/eslint-plugin-budapestian",
+  "scripts": {
+    "depcruise:graph": "depcruise --config .dependency-cruiser.js --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
+    "lint": "npm-run-all lint:eslint lint:prettier lint:dependency-cruiser",
+    "lint:fix": "npm-run-all lint:eslint:fix lint:prettier:fix",
+    "lint:dependency-cruiser": "depcruise --config .dependency-cruiser.js -- lib test",
+    "lint:eslint": "eslint lib test",
+    "lint:eslint:fix": "eslint --fix lib test",
+    "lint:prettier": "prettier --loglevel warn --check {src,test}/\\*\\*/\\*.{js,json} *.js *.json .github",
+    "lint:prettier:fix": "prettier --loglevel warn --write {src,test}/\\*\\*/\\*.{js,json} *.js *.json .github/\\*\\*/\\*",
+    "test": "mocha test --recursive",
+    "test:cover": "nyc npm test",
+    "update-dependencies": "npm-run-all upem:update upem:install lint:fix test",
+    "upem:install": "npm install",
+    "upem:update": "npm outdated --json | upem"
+  },
+  "dependencies": {
+    "lodash.get": "4.4.2"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "dependency-cruiser": "8.0.1",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-unicorn": "15.0.1",
+    "mocha": "7.1.0",
+    "npm-run-all": "4.1.5",
+    "nyc": "15.0.0",
+    "prettier": "1.19.1",
+    "upem": "3.1.2"
+  },
+  "peerDependencies": {
+    "eslint": ">=6.0.0"
+  },
+  "upem": {
+    "donotup": [
+      {
+        "package": "eslint-plugin-unicorn",
+        "because": "eslint-plugin-unicorn 16 doesn't support node 8 anymore, while state-machine-cat still does."
+      }
+    ]
+  },
+  "nyc": {
+    "statements": 100,
+    "branches": 100,
+    "functions": 100,
+    "lines": 100,
+    "exclude": [
+      "*.js",
+      "coverage/**/*",
+      "tmp*",
+      "docs/**/*"
+    ],
+    "reporter": [
+      "text-summary",
+      "html",
+      "lcov"
+    ],
+    "all": true
+  },
+  "files": [
+    "lib",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": "^8.10||^10||^12||>=13"
+  },
+  "license": "MIT",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "test"
+  }
+}
