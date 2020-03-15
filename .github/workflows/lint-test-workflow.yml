@@ -59,10 +59,19 @@ jobs:
         shell: bash
         env:
           CI: true
-      - name: test
+      - name: test + coverage
         run: |
           node --version
           npm run test:cover
+        if: matrix.platform == 'ubuntu-latest' && matrix.node-version != '8.x'
+        shell: bash
+        env:
+          CI: true
+      - name: test only (node 8)
+        run: |
+          node --version
+          npm run test
+        if: matrix.platform == 'ubuntu-latest' && matrix.node-version == '8.x'
         shell: bash
         env:
           CI: true

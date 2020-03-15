@@ -3,7 +3,7 @@
 This rule enforces that parameter names start with a `p` and are pascal cased. There's an exception for
 starting with the `_` character as that (by convention) is often used for unused parameters.
 
-🔧 The `--fix option` on the command line renames parameters to the correct pattern (including 
+🔧 The `--fix option` on the command line renames parameters to the correct pattern (including
 any use in the function body).
 
 ## Rule Details
@@ -20,6 +20,10 @@ const f = thing => {
 };
 
 const f = piedPiper => {
+  /* do stuff */
+};
+
+const f = параметр => {
   /* do stuff */
 };
 ```
@@ -39,8 +43,12 @@ const f = pPiedPiper => {
   /* do stuff */
 };
 
+const f = pПараметр => {
+  /* do stuff */
+};
+
 function f(_, pThing) {
-    // to stuff with pThing, but not with _
+  // to stuff with pThing, but not with _
 }
 ```
 
@@ -53,8 +61,10 @@ If there are any options, describe them here. Otherwise, delete this section.
 ## When Not To Use It
 
 - If you don't want to have this parameter naming convention.
-- When you use parameter names that contain non-ascii characters (e.g. _paramètre_, _параметр_ or _参数_ will be
-  flagged and cannot be auto corrected a.t.m.)
+- When you use parameter names that contain non-ascii characters from alphabets that
+  don't have upper and lower case.     
+  E.g. _参数_ will be flagged and cannot be auto corrected  a.t.m., but _параметр_ and
+  _paramètre_ _can_ be autocorrected. Likewise _pПараметр_ and _pParamètre_ are valid.
 
 <!--
 ## Further Reading

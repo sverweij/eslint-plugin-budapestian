@@ -63,7 +63,8 @@
       "*.js",
       "coverage/**/*",
       "tmp*",
-      "docs/**/*"
+      "docs/**/*",
+      "test/**/*"
     ],
     "reporter": [
       "text-summary",
