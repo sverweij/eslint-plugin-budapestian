@@ -13,6 +13,10 @@
     "url": "https://github.com/sverweij/eslint-plugin-budapestian/issues"
   },
   "homepage": "https://github.com/sverweij/eslint-plugin-budapestian",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sverweij/dependency-cruiser"
+  },
   "scripts": {
     "depcruise:graph": "depcruise --config .dependency-cruiser.js --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
     "lint": "npm-run-all lint:eslint lint:prettier lint:dependency-cruiser",
@@ -29,6 +33,7 @@
     "upem:update": "npm outdated --json | upem"
   },
   "dependencies": {
+    "decamelize": "3.2.0",
     "lodash.get": "4.4.2"
   },
   "devDependencies": {
@@ -50,7 +55,11 @@
     "donotup": [
       {
         "package": "eslint-plugin-unicorn",
-        "because": "eslint-plugin-unicorn 16 doesn't support node 8 anymore, while state-machine-cat still does."
+        "because": "eslint-plugin-unicorn 16 doesn't support node 8 anymore, while eslint-plugin-budapestian still does."
+      },
+      {
+        "package": "decamelize",
+        "because": "decamelize 4 doesn't support node 8 anymore, while eslint-plugin-budapestian still does."
       }
     ]
   },

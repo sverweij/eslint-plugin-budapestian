@@ -1,7 +1,8 @@
 const {
   getValidParameterPattern,
-  getParameterReplacementPattern
-} = require("../../../lib/rules/parameter-pattern-utl");
+  getValidConstantPattern,
+  getIdentifierReplacementPattern
+} = require("../../../lib/rules/pattern-utl");
 const nodeVersionIsRecentEngough = require("../../../lib/utl/node-version-is-recent-enough");
 
 if (nodeVersionIsRecentEngough()) {
@@ -15,16 +16,26 @@ if (nodeVersionIsRecentEngough()) {
       expect(getValidParameterPattern(10).flags).to.equal("u");
     });
   });
+
   describe("parameter-pattern-utl - getParameterReplacementPattern", () => {
     it("on node 8 (and below) should have no flags", () => {
-      expect(getParameterReplacementPattern("something", 8).flags).to.equal(
+      expect(getIdentifierReplacementPattern("something", 8).flags).to.equal(
         "g"
       );
     });
     it("on node 10 (and up) should have the unicode flag", () => {
-      expect(getParameterReplacementPattern("something", 10).flags).to.equal(
+      expect(getIdentifierReplacementPattern("something", 10).flags).to.equal(
         "gu"
       );
+    });
+  });
+
+  describe("parameter-pattern-utl - getValidConstantPattern", () => {
+    it("on node 8 (and below) should have no flags", () => {
+      expect(getValidConstantPattern(8).flags).to.equal("");
+    });
+    it("on node 10 (and up) should have the unicode flag", () => {
+      expect(getValidConstantPattern(10).flags).to.equal("u");
     });
   });
 }

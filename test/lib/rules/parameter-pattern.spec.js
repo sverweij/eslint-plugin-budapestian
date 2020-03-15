@@ -7,7 +7,7 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2018
   }
 });
-ruleTester.run("enforce-parameter-pattern", rule, {
+ruleTester.run("parameter-pattern", rule, {
   valid: [
     "function doSomething(pLalala) { }",
     "function doSomething() { }",
@@ -116,13 +116,41 @@ ruleTester.run("enforce-parameter-pattern", rule, {
         }
       ],
       output: "function doSomething(pParam) { const lConst=pParam }"
+    },
+    // {
+    //   code:
+    //     "function doSomething(param, secondParam) { const lConst=param*secondParam }",
+    //   errors: [
+    //     {
+    //       message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+    //       type: "FunctionDeclaration"
+    //     },
+    //     {
+    //       message: `parameter 'secondParam' should be pascal case and start with a p: 'pSecondParam'`,
+    //       type: "FunctionDeclaration"
+    //     }
+    //   ],
+    //   output:
+    //     "function doSomething(pParam, pSecondParam) { const lConst=pParam*pSecondParam }"
+    // },
+    {
+      code:
+        "function doSomething(pParam, secondParam) { const lConst=pParam*secondParam }",
+      errors: [
+        {
+          message: `parameter 'secondParam' should be pascal case and start with a p: 'pSecondParam'`,
+          type: "FunctionDeclaration"
+        }
+      ],
+      output:
+        "function doSomething(pParam, pSecondParam) { const lConst=pParam*pSecondParam }"
     }
   ]
 });
 
 // unicode matching works properly from node >=10
 if (nodeVersionIsRecentEnough()) {
-  ruleTester.run("enforce-parameter-pattern unicode (node >= 10)", rule, {
+  ruleTester.run("parameter-pattern unicode (node >= 10)", rule, {
     valid: [
       "function функция (pПараметр) { }",
       "const ф = (pПараметр) => { }"
