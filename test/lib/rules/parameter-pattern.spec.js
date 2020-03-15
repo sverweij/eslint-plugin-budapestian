@@ -117,22 +117,22 @@ ruleTester.run("parameter-pattern", rule, {
       ],
       output: "function doSomething(pParam) { const lConst=pParam }"
     },
-    // {
-    //   code:
-    //     "function doSomething(param, secondParam) { const lConst=param*secondParam }",
-    //   errors: [
-    //     {
-    //       message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
-    //       type: "FunctionDeclaration"
-    //     },
-    //     {
-    //       message: `parameter 'secondParam' should be pascal case and start with a p: 'pSecondParam'`,
-    //       type: "FunctionDeclaration"
-    //     }
-    //   ],
-    //   output:
-    //     "function doSomething(pParam, pSecondParam) { const lConst=pParam*pSecondParam }"
-    // },
+    {
+      code:
+        "function doSomething(param, secondParam) { const lConst=param*secondParam }",
+      errors: [
+        {
+          message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+          type: "FunctionDeclaration"
+        },
+        {
+          message: `parameter 'secondParam' should be pascal case and start with a p: 'pSecondParam'`,
+          type: "FunctionDeclaration"
+        }
+      ],
+      output:
+        "function doSomething(pParam, pSecondParam) { const lConst=pParam*pSecondParam }"
+    },
     {
       code:
         "function doSomething(pParam, secondParam) { const lConst=pParam*secondParam }",
