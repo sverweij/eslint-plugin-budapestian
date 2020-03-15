@@ -62,9 +62,9 @@ If there are any options, describe them here. Otherwise, delete this section.
 
 - If you don't want to have this parameter naming convention.
 - When you use parameter names that contain non-ascii characters from alphabets that
-  don't have upper and lower case.     
-  E.g. _参数_ will be flagged and cannot be auto corrected  a.t.m., but _параметр_ and
-  _paramètre_ _can_ be autocorrected. Likewise _pПараметр_ and _pParamètre_ are valid.
+  don't have upper and lower case.  
+  E.g. `参数` will be flagged and cannot be auto corrected a.t.m., but `параметр` and
+  `paramètre` _can_ be auto corrected. Likewise `pПараметр` and `pParamètre` are valid.
 
 <!--
 ## Further Reading
