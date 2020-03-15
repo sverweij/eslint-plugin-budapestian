@@ -18,6 +18,7 @@
     "url": "git+https://github.com/sverweij/dependency-cruiser"
   },
   "scripts": {
+    "check": "npm-run-all lint test:cover",
     "depcruise:graph": "depcruise --config .dependency-cruiser.js --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
     "lint": "npm-run-all lint:eslint lint:prettier lint:dependency-cruiser",
     "lint:fix": "npm-run-all lint:eslint:fix lint:prettier:fix",
@@ -26,11 +27,13 @@
     "lint:eslint:fix": "eslint --fix lib test",
     "lint:prettier": "prettier --loglevel warn --check {src,test}/\\*\\*/\\*.{js,json} *.js *.json .github",
     "lint:prettier:fix": "prettier --loglevel warn --write {src,test}/\\*\\*/\\*.{js,json} *.js *.json .github/\\*\\*/\\*",
+    "scm:stage": "git add .",
     "test": "mocha test --recursive",
     "test:cover": "nyc npm test",
     "update-dependencies": "npm-run-all upem:update upem:install lint:fix test",
     "upem:install": "npm install",
-    "upem:update": "npm outdated --json | upem"
+    "upem:update": "npm outdated --json | upem",
+    "version": "npm-run-all check depcruise:graph scm:stage"
   },
   "dependencies": {
     "decamelize": "3.2.0",
