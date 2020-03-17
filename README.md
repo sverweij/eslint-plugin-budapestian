@@ -10,7 +10,6 @@ with a scope prefix:
 - `l` for local variables (not yet supported)
 - `g` for global variables (not yet supported).
 
-
 This convention makes weird re-assignment bugs immediately visible, and makes naming things
 that would normally clash with regular javascript syntax a easier. E.g. you can't use
 `function` as a parameter - so you need creativity to come up with something - `callback` is
@@ -55,10 +54,10 @@ Then configure the rules you want to use under the rules section.
 
 ## Supported Rules
 
-| auto fixable? | rule                                                                    | description                                                    |
-| ------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------- |
-| yes           | [budapestian/parameter-pattern](docs/rules/parameter-pattern.md)        | pascal case function parameters and make them start with a `p` |
-| yes           | [budapestian/global-constant-pattern](rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
+| auto fixable? | rule                                                                         | description                                                    |
+| ------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| yes           | [budapestian/parameter-pattern](docs/rules/parameter-pattern.md)             | pascal case function parameters and make them start with a `p` |
+| yes           | [budapestian/global-constant-pattern](docs/rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
 
 ## Flare'n status section
 

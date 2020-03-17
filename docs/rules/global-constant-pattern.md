@@ -20,6 +20,13 @@ const snakes_but_no_caps = 1,
 
 // also assignments of arrays and objects to a global constant
 // are subject to this rule
+const thisIsAnArray = ["aap", "noot", "mies", "wim", "zus"];
+
+const severity2coolness = {
+  info: "cool",
+  warn: "not cool - fix later",
+  error: "very uncool - fix now"
+};
 ```
 
 Examples of **correct** code for this rule:
@@ -32,6 +39,15 @@ const GLOBAL_CONSTANT = 123;
 const MULTIPLE = 1,
   CONSTANTS = 2,
   IN_ONE_DECLARATION = 3;
+
+// upper case is cool for array and object assignments
+const THIS_IS_AN_ARRAY = ["aap", "noot", "mies", "wim", "zus"];
+
+const SEVERITY2COOLNESS = {
+  info: "cool",
+  warn: "not cool - fix later",
+  error: "very uncool - fix now"
+};
 
 // assignments of call expressions to global constants are allowed without
 // them having to be snaked upper case.
