@@ -178,6 +178,37 @@ if (nodeVersionIsRecentEnough()) {
         ],
         output: "const f = (pФункцияПараметр) => { }"
       },
+      // replace snakes
+      {
+        code: "const f = (function_parameter) => { }",
+        errors: [
+          {
+            message: `parameter 'function_parameter' should be pascal case and start with a p: 'pFunctionParameter'`,
+            type: "ArrowFunctionExpression"
+          }
+        ],
+        output: "const f = (pFunctionParameter) => { }"
+      },
+      {
+        code: "const f = (функция_параметр) => { }",
+        errors: [
+          {
+            message: `parameter 'функция_параметр' should be pascal case and start with a p: 'pФункцияПараметр'`,
+            type: "ArrowFunctionExpression"
+          }
+        ],
+        output: "const f = (pФункцияПараметр) => { }"
+      },
+      {
+        code: "const f = (ФУНКЦИЯ_ПАРАМЕТР) => { }",
+        errors: [
+          {
+            message: `parameter 'ФУНКЦИЯ_ПАРАМЕТР' should be pascal case and start with a p: 'pФункцияПараметр'`,
+            type: "ArrowFunctionExpression"
+          }
+        ],
+        output: "const f = (pФункцияПараметр) => { }"
+      },
       // only replace within own scope
       {
         code:
