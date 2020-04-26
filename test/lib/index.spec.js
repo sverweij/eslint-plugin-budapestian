@@ -12,8 +12,8 @@ describe("plugin index", () => {
     expect(
       fs
         .readdirSync(path.join("lib", "rules"))
-        .filter(pFileName => !pFileName.match(/utl/))
-        .map(pFileName => pFileName.split(".").shift())
+        .filter((pFileName) => !pFileName.match(/utl/))
+        .map((pFileName) => pFileName.split(".").shift())
         .sort()
     ).to.deep.equal(Object.keys(rules).sort());
   });

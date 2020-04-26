@@ -1,11 +1,10 @@
 const rule = require("../../../lib/rules/global-constant-pattern");
-const nodeVersionIsRecentEnough = require("../../../lib/utl/node-version-is-recent-enough");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({
   parserOptions: {
-    ecmaVersion: 2018
-  }
+    ecmaVersion: 2018,
+  },
 });
 ruleTester.run("global-constant-pattern", rule, {
   valid: [
@@ -13,7 +12,7 @@ ruleTester.run("global-constant-pattern", rule, {
     "const CAPITALS = 123",
     "const CAPITALS = 123, MORE_CAPITALS = '456'",
     "const THING2SOME_OTHER_THING = { one: 1, two: 2 }",
-    "const AN_ARRAY = ['aap', 'noot', 'mies']"
+    "const AN_ARRAY = ['aap', 'noot', 'mies']",
   ],
 
   invalid: [
@@ -22,10 +21,10 @@ ruleTester.run("global-constant-pattern", rule, {
       errors: [
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
-          type: "Program"
-        }
+          type: "Program",
+        },
       ],
-      output: "const LOWERCASE = 123"
+      output: "const LOWERCASE = 123",
     },
     // multi const declaration
     {
@@ -33,14 +32,14 @@ ruleTester.run("global-constant-pattern", rule, {
       errors: [
         {
           message: `global constant 'Uppercase' should be snaked upper case: 'UPPERCASE'`,
-          type: "Program"
+          type: "Program",
         },
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
-          type: "Program"
-        }
+          type: "Program",
+        },
       ],
-      output: "const UPPERCASE = 123, LOWERCASE = '456'"
+      output: "const UPPERCASE = 123, LOWERCASE = '456'",
     },
     // multiple const declarations
     {
@@ -48,14 +47,14 @@ ruleTester.run("global-constant-pattern", rule, {
       errors: [
         {
           message: `global constant 'Uppercase' should be snaked upper case: 'UPPERCASE'`,
-          type: "Program"
+          type: "Program",
         },
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
-          type: "Program"
-        }
+          type: "Program",
+        },
       ],
-      output: `const UPPERCASE = 123; const LOWERCASE = '456'`
+      output: `const UPPERCASE = 123; const LOWERCASE = '456'`,
     },
     // global replace
     {
@@ -63,10 +62,10 @@ ruleTester.run("global-constant-pattern", rule, {
       errors: [
         {
           message: `global constant 'camelCase' should be snaked upper case: 'CAMEL_CASE'`,
-          type: "Program"
-        }
+          type: "Program",
+        },
       ],
-      output: "const CAMEL_CASE = 123"
+      output: "const CAMEL_CASE = 123",
     },
     // global replace
     {
@@ -75,35 +74,32 @@ ruleTester.run("global-constant-pattern", rule, {
       errors: [
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
-          type: "Program"
-        }
+          type: "Program",
+        },
       ],
       output:
-        "const LOWERCASE = 123; function f (pBla) { return LOWERCASE * pBla }"
-    }
-  ]
+        "const LOWERCASE = 123; function f (pBla) { return LOWERCASE * pBla }",
+    },
+  ],
 });
 
-// unicode matching works properly from node >=10
-if (nodeVersionIsRecentEnough()) {
-  ruleTester.run("global-constant-pattern - unicode edition", rule, {
-    valid: [
-      "const someModule = require('some-module')",
-      "const CAPITALS = 123",
-      "const CAPITALS = 123, MORE_CAPITALS = '456'"
-    ],
+ruleTester.run("global-constant-pattern - unicode edition", rule, {
+  valid: [
+    "const someModule = require('some-module')",
+    "const CAPITALS = 123",
+    "const CAPITALS = 123, MORE_CAPITALS = '456'",
+  ],
 
-    invalid: [
-      {
-        code: "const константаУлучшение = 123",
-        errors: [
-          {
-            message: `global constant 'константаУлучшение' should be snaked upper case: 'КОНСТАНТА_УЛУЧШЕНИЕ'`,
-            type: "Program"
-          }
-        ],
-        output: "const КОНСТАНТА_УЛУЧШЕНИЕ = 123"
-      }
-    ]
-  });
-}
+  invalid: [
+    {
+      code: "const константаУлучшение = 123",
+      errors: [
+        {
+          message: `global constant 'константаУлучшение' should be snaked upper case: 'КОНСТАНТА_УЛУЧШЕНИЕ'`,
+          type: "Program",
+        },
+      ],
+      output: "const КОНСТАНТА_УЛУЧШЕНИЕ = 123",
+    },
+  ],
+});

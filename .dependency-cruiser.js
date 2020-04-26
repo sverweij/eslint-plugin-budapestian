@@ -9,21 +9,35 @@ module.exports = {
         "your solution (i.e. use dependency inversion, make sure the modules have a single responsibility) ",
       from: {},
       to: {
-        circular: true
-      }
+        circular: true,
+      },
     },
     {
       name: "no-orphans",
-      severity: "info",
+      severity: "error",
       comment:
         "This is an orphan module - it's likely not used (anymore?). Either use it or remove it. If it's " +
         "logical this module is an orphan (i.e. it's a config file), add an exception for it in your " +
         "dependency-cruiser configuration.",
       from: {
         orphan: true,
-        pathNot: "\\.d\\.ts$"
+        pathNot: "\\.d\\.ts$",
       },
-      to: {}
+      to: {},
+    },
+    {
+      name: "no-unreachable-from-index",
+      severity: "error",
+      comment:
+        "If there's one or more modules in the lib folder not accessible from the index, they're probably " +
+        "'dead wood', which means they can be removed safely.",
+      from: {
+        path: "^lib/index\\.js$",
+      },
+      to: {
+        path: "^lib",
+        reachable: false,
+      },
     },
     {
       name: "no-deprecated-core",
@@ -34,8 +48,8 @@ module.exports = {
       from: {},
       to: {
         dependencyTypes: ["core"],
-        path: "^(punycode|domain|constants|sys|_linklist|_stream_wrap)$"
-      }
+        path: "^(punycode|domain|constants|sys|_linklist|_stream_wrap)$",
+      },
     },
     {
       name: "not-to-deprecated",
@@ -45,8 +59,8 @@ module.exports = {
       severity: "warn",
       from: {},
       to: {
-        dependencyTypes: ["deprecated"]
-      }
+        dependencyTypes: ["deprecated"],
+      },
     },
     {
       name: "no-non-package-json",
@@ -58,8 +72,8 @@ module.exports = {
         "in your package.json.",
       from: {},
       to: {
-        dependencyTypes: ["npm-no-pkg", "npm-unknown"]
-      }
+        dependencyTypes: ["npm-no-pkg", "npm-unknown"],
+      },
     },
     {
       name: "not-to-unresolvable",
@@ -69,8 +83,8 @@ module.exports = {
       severity: "error",
       from: {},
       to: {
-        couldNotResolve: true
-      }
+        couldNotResolve: true,
+      },
     },
     {
       name: "no-duplicate-dep-types",
@@ -82,8 +96,8 @@ module.exports = {
       from: {},
       to: {
         moreThanOneDependencyType: true,
-        pathNot: "eslint"
-      }
+        pathNot: "eslint",
+      },
     },
 
     /* rules you might want to tweak for your specific situation: */
@@ -95,11 +109,11 @@ module.exports = {
         "or there's something in the test folder that isn't a test.",
       severity: "error",
       from: {
-        pathNot: "^test"
+        pathNot: "^test",
       },
       to: {
-        path: "^test"
-      }
+        path: "^test",
+      },
     },
     {
       name: "not-to-spec",
@@ -110,8 +124,8 @@ module.exports = {
       severity: "error",
       from: {},
       to: {
-        path: "\\.spec\\.js$"
-      }
+        path: "\\.spec\\.js$",
+      },
     },
     {
       name: "not-to-dev-dep",
@@ -124,11 +138,11 @@ module.exports = {
         "from.pathNot re of the not-to-dev-dep rule in the dependency-cruiser configuration",
       from: {
         path: "^(lib)",
-        pathNot: "\\.spec\\.js$"
+        pathNot: "\\.spec\\.js$",
       },
       to: {
-        dependencyTypes: ["npm-dev"]
-      }
+        dependencyTypes: ["npm-dev"],
+      },
     },
     {
       name: "optional-deps-used",
@@ -140,9 +154,9 @@ module.exports = {
         "depdency-cruiser configuration.",
       from: {},
       to: {
-        dependencyTypes: ["npm-optional"]
-      }
-    }
+        dependencyTypes: ["npm-optional"],
+      },
+    },
   ],
   options: {
     /* conditions specifying which files not to follow further when encountered:
@@ -158,8 +172,8 @@ module.exports = {
         "npm-optional",
         "npm-peer",
         "npm-bundled",
-        "npm-no-pkg"
-      ]
+        "npm-no-pkg",
+      ],
     },
 
     /* conditions specifying which dependencies to exclude 
@@ -257,8 +271,8 @@ module.exports = {
               graphviz might take a long time calculating ortho(gonal)
               routings.
            */
-            splines: "ortho"
-          }
+            splines: "ortho",
+          },
           //   modules: [
           //     {
           //       criteria: { source: "^src/model" },
@@ -291,7 +305,7 @@ module.exports = {
           //       attributes: { color: "#00770077" }
           //     }
           //   ]
-        }
+        },
       },
       archi: {
         /* pattern of modules that can be consolidated in the high level
@@ -299,7 +313,7 @@ module.exports = {
           dependency graph reporter (`archi`) you probably want to tweak
           this collapsePattern to your situation.
         */
-        collapsePattern: "^(node_modules|packages|src|lib|app|test|spec)/[^/]+"
+        collapsePattern: "^(node_modules|packages|src|lib|app|test|spec)/[^/]+",
 
         /* Options to tweak the appearance of your graph.See
            https://github.com/sverweij/dependency-cruiser/blob/master/doc/rules-reference.md#dot
@@ -309,8 +323,8 @@ module.exports = {
          */
         // theme: {
         // },
-      }
-    }
-  }
+      },
+    },
+  },
 };
 // generated: dependency-cruiser@8.0.0 on 2020-03-07T16:09:16.338Z
