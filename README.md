@@ -8,7 +8,7 @@ with a scope prefix:
 - `p` for parameters (supported by this plugin),
 - For global constants we use the C convention of ALL_CAPS_SNAKE_CASE (supported by this plugin).
 - `l` for local variables (not yet supported)
-- `g` for global variables (not yet supported).
+- `g` for global variables (supported by this plugin).
 
 This convention makes weird re-assignment bugs immediately visible, and makes naming things
 that would normally clash with regular javascript syntax a easier. E.g. you can't use
@@ -58,6 +58,7 @@ Then configure the rules you want to use under the rules section.
 | ------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | yes           | [budapestian/parameter-pattern](docs/rules/parameter-pattern.md)             | pascal case function parameters and make them start with a `p` |
 | yes           | [budapestian/global-constant-pattern](docs/rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
+| yes           | [budapestian/global-variable-pattern](docs/rules/global-variable-pattern.md) | pascal case global variables and make them start with a `g`    |
 
 ## Flare'n status section
 
