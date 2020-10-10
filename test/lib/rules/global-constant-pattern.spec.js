@@ -85,9 +85,9 @@ ruleTester.run("global-constant-pattern", rule, {
 
 ruleTester.run("global-constant-pattern - unicode edition", rule, {
   valid: [
-    "const someModule = require('some-module')",
-    "const CAPITALS = 123",
-    "const CAPITALS = 123, MORE_CAPITALS = '456'",
+    "const какойТоМодуль = require('some-module')",
+    "const ВЕРХНИЙ_РЕГИСТР = 123",
+    "const КОНСТАНТА = 123, КОНСТАНТА_УЛУЧШЕНИЕ = '456'",
   ],
 
   invalid: [
