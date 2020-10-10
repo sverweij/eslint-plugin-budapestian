@@ -6,7 +6,7 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2018,
   },
 });
-ruleTester.run("parameter-pattern", rule, {
+ruleTester.run("integration: parameter-pattern", rule, {
   valid: [
     "function doSomething(pLalala) { }",
     "function doSomething() { }",
@@ -147,7 +147,7 @@ ruleTester.run("parameter-pattern", rule, {
   ],
 });
 
-ruleTester.run("parameter-pattern unicode", rule, {
+ruleTester.run("integration: parameter-pattern unicode", rule, {
   valid: [
     "function функция (pПараметр) { }",
     "const ф = (pПараметр) => { }",

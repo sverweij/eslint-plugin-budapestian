@@ -6,7 +6,7 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2018,
   },
 });
-ruleTester.run("global-constant-pattern", rule, {
+ruleTester.run("integration: global-constant-pattern", rule, {
   valid: [
     "const someModule = require('some-module')",
     "const CAPITALS = 123",
@@ -83,7 +83,7 @@ ruleTester.run("global-constant-pattern", rule, {
   ],
 });
 
-ruleTester.run("global-constant-pattern - unicode edition", rule, {
+ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
   valid: [
     "const какойТоМодуль = require('some-module')",
     "const ВЕРХНИЙ_РЕГИСТР = 123",
