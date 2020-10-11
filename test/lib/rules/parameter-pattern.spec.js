@@ -144,6 +144,28 @@ ruleTester.run("integration: parameter-pattern", rule, {
       output:
         "function doSomething(pParam, pSecondParam) { const lConst=pParam*pSecondParam }",
     },
+    // if it's either a local or global variable pattern, just replace
+    // the prefix instead of blindly plonking a p in front of it
+    {
+      code: "function doSomething(lParam) { const lConst=lParam*3 }",
+      errors: [
+        {
+          message: `parameter 'lParam' should be pascal case and start with a p: 'pParam'`,
+          type: "FunctionDeclaration",
+        },
+      ],
+      output: "function doSomething(pParam) { const lConst=pParam*3 }",
+    },
+    {
+      code: "function doSomething(gParam) { const lConst=gParam*3 }",
+      errors: [
+        {
+          message: `parameter 'gParam' should be pascal case and start with a p: 'pParam'`,
+          type: "FunctionDeclaration",
+        },
+      ],
+      output: "function doSomething(pParam) { const lConst=pParam*3 }",
+    },
   ],
 });
 
