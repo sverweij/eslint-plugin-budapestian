@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-budapestian",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "enforce budapestian style rules",
   "keywords": [
     "eslint",
