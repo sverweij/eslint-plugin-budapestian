@@ -9,6 +9,7 @@ const ruleTester = new RuleTester({
 ruleTester.run("integration: global-variable-pattern", rule, {
   valid: [
     "let someModule = require('some-module')",
+    "let gGlobalVariable;",
     "let gCapitals = 123",
     "let gCapitals = 123, gMoreCapitals = '456'",
     "let gThing2SomeOtherThing = { one: 1, two: 2 }",
@@ -16,6 +17,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
     "{let lScopedVariable = 'yo'}",
     "function doStuff() { if (true) { let someVariable = 789; return someVariable;} }",
     "var someModule = require('some-module')",
+    "var gGlobalVariable;",
     "var gCapitals = 123",
     "var gCapitals = 123, gMoreCapitals = '456'",
     "var gThing2SomeOtherThing = { one: 1, two: 2 }",
