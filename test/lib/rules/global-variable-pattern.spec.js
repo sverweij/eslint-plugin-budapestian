@@ -101,7 +101,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       ],
       output: "var gUppercase = 123; var gLowercase = '456'",
     },
-    // global replace
+    // upper snake case handling
     {
       code: "let SNAKE_CASE = 123",
       errors: [
@@ -121,6 +121,48 @@ ruleTester.run("integration: global-variable-pattern", rule, {
         },
       ],
       output: "var gSnakeCase = 123",
+    },
+    // if it looks like a local variable, but it's global => just replace the prefix
+    {
+      code: "let lThisIsAGlobal = 123",
+      errors: [
+        {
+          message: `global variable 'lThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          type: "Program",
+        },
+      ],
+      output: "let gThisIsAGlobal = 123",
+    },
+    {
+      code: "var lThisIsAGlobal = 123",
+      errors: [
+        {
+          message: `global variable 'lThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          type: "Program",
+        },
+      ],
+      output: "var gThisIsAGlobal = 123",
+    },
+    // if it looks like a parameter, but it's global => just replace the prefix
+    {
+      code: "let pThisIsAGlobal = 123",
+      errors: [
+        {
+          message: `global variable 'pThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          type: "Program",
+        },
+      ],
+      output: "let gThisIsAGlobal = 123",
+    },
+    {
+      code: "var pThisIsAGlobal = 123",
+      errors: [
+        {
+          message: `global variable 'pThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          type: "Program",
+        },
+      ],
+      output: "var gThisIsAGlobal = 123",
     },
     // global replace
     {

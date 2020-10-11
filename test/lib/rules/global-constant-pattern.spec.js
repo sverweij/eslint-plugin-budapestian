@@ -56,7 +56,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
       ],
       output: `const UPPERCASE = 123; const LOWERCASE = '456'`,
     },
-    // global replace
+    // properly decamlize and then snake case
     {
       code: "const camelCase = 123",
       errors: [
@@ -66,6 +66,42 @@ ruleTester.run("integration: global-constant-pattern", rule, {
         },
       ],
       output: "const CAMEL_CASE = 123",
+    },
+    // when it looks like a local variable, but it is a global constant =>
+    // strip the prefix before de-camelizing & uppering
+    {
+      code: "const lThisIsNotALocalVariable = 123",
+      errors: [
+        {
+          message: `global constant 'lThisIsNotALocalVariable' should be snaked upper case: 'THIS_IS_NOT_A_LOCAL_VARIABLE'`,
+          type: "Program",
+        },
+      ],
+      output: "const THIS_IS_NOT_A_LOCAL_VARIABLE = 123",
+    },
+    // when it looks like a global variable, but it is a global constant =>
+    // strip the prefix before de-camelizing & uppering
+    {
+      code: "const gNotAGlobalVariable = 123",
+      errors: [
+        {
+          message: `global constant 'gNotAGlobalVariable' should be snaked upper case: 'NOT_A_GLOBAL_VARIABLE'`,
+          type: "Program",
+        },
+      ],
+      output: "const NOT_A_GLOBAL_VARIABLE = 123",
+    },
+    // when it looks like a parameter, but it is a global constant =>
+    // strip the prefix before de-camelizing & uppering
+    {
+      code: "const pNotAParameter = 123",
+      errors: [
+        {
+          message: `global constant 'pNotAParameter' should be snaked upper case: 'NOT_A_PARAMETER'`,
+          type: "Program",
+        },
+      ],
+      output: "const NOT_A_PARAMETER = 123",
     },
     // global replace
     {
