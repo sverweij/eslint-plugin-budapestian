@@ -5,10 +5,10 @@ are regular constants or variables, we use a bastard variant of
 [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation) where we treat elements
 with a scope prefix:
 
-- `p` for parameters (supported by this plugin),
-- For global constants we use the C convention of ALL_CAPS_SNAKE_CASE (supported by this plugin).
-- `l` for local variables (not yet supported)
-- `g` for global variables (supported by this plugin).
+- `p` for parameters
+- `l` for local variables
+- `g` for global variables
+- For global constants we use the C convention of ALL_CAPS_SNAKE_CASE.
 
 This convention makes weird re-assignment bugs immediately visible, and makes naming things
 that would normally clash with regular javascript syntax a easier. E.g. you can't use
@@ -47,6 +47,8 @@ Then configure the rules you want to use under the rules section.
 {
   "rules": {
     "budapestian/parameter-pattern": "error",
+    "budapestian/global-variable-pattern": "error",
+    "budapestian/local-variable-pattern": "error",
     "budapestian/global-constant-pattern": "error"
   }
 }
@@ -57,8 +59,9 @@ Then configure the rules you want to use under the rules section.
 | auto fixable? | rule                                                                         | description                                                    |
 | ------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | yes           | [budapestian/parameter-pattern](docs/rules/parameter-pattern.md)             | pascal case function parameters and make them start with a `p` |
-| yes           | [budapestian/global-constant-pattern](docs/rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
 | yes           | [budapestian/global-variable-pattern](docs/rules/global-variable-pattern.md) | pascal case global variables and make them start with a `g`    |
+| yes           | [budapestian/local-variable-pattern](docs/rules/local-variable-pattern.md)   | pascal case local variables and make them start with an `l`    |
+| yes           | [budapestian/global-constant-pattern](docs/rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
 
 ## Flare'n status section
 
