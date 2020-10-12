@@ -1,8 +1,9 @@
 ## Rules
 
-- [budapestian/parameter-pattern](rules/parameter-pattern.md) - makes sure function parameters are prefixed with a `p`
+- [budapestian/parameter-pattern](rules/parameter-pattern.md) - makes sure function parameters are prefixed with a `p` and are in pascal case.
+- [budapestian/global-variable-pattern](rules/global-variable-pattern.md) - makes sure global variables are prefixed with a `g` and are in pascal case.
+- [budapestian/local-variable-pattern](rules/local-variable-pattern.md) - makes sure local parameters are prefixed with an `l` and are in pascal case.
 - [budapestian/global-constant-pattern](rules/global-constant-pattern.md) - makes sure global constants are in snaked upper case.
-- [budapestian/global-variable-pattern](rules/global-variable-pattern.md) - makes sure global variables are prefixed with a `g`.
 
 ## dependency graph
 
