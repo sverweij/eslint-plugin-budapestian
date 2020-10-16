@@ -19,6 +19,14 @@ ruleTester.run("integration: parameter-pattern", rule, {
     "const f = (pThing = 1234) => { }",
     "const f = () => { }",
     "const f = (_Параметр) => { }",
+    {
+      code: "function doSomething(pThing, EKSEPTION) {}",
+      options: [{ exceptions: ["EKSEPTION"] }],
+    },
+    {
+      code: "const f = (pThing, EKSEPTION) => {}",
+      options: [{ exceptions: ["EKSEPTION"] }],
+    },
   ],
 
   invalid: [
@@ -165,6 +173,20 @@ ruleTester.run("integration: parameter-pattern", rule, {
         },
       ],
       output: "function doSomething(pParam) { const lConst=pParam*3 }",
+    },
+    //
+    {
+      code:
+        "function doSomething(gParam, EKSEPTION) { const lConst=gParam*EKSEPTION }",
+      options: [{ exceptions: ["EKSEPTION"] }],
+      errors: [
+        {
+          message: `parameter 'gParam' should be pascal case and start with a p: 'pParam'`,
+          type: "FunctionDeclaration",
+        },
+      ],
+      output:
+        "function doSomething(pParam, EKSEPTION) { const lConst=pParam*EKSEPTION }",
     },
   ],
 });

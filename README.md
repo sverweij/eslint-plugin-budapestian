@@ -48,7 +48,10 @@ Then configure the rules you want to use under the rules section.
   "rules": {
     "budapestian/parameter-pattern": "error",
     "budapestian/global-variable-pattern": "error",
-    "budapestian/local-variable-pattern": "error",
+    "budapestian/local-variable-pattern": [
+      "error",
+      { "exceptions": ["i", "j", "k", "x", "y", "z"] }
+    ],
     "budapestian/global-constant-pattern": "error"
   }
 }

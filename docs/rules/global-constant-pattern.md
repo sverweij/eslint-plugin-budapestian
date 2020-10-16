@@ -25,7 +25,7 @@ const thisIsAnArray = ["aap", "noot", "mies", "wim", "zus"];
 const severity2coolness = {
   info: "cool",
   warn: "not cool - fix later",
-  error: "very uncool - fix now"
+  error: "very uncool - fix now",
 };
 ```
 
@@ -46,7 +46,7 @@ const THIS_IS_AN_ARRAY = ["aap", "noot", "mies", "wim", "zus"];
 const SEVERITY2COOLNESS = {
   info: "cool",
   warn: "not cool - fix later",
-  error: "very uncool - fix now"
+  error: "very uncool - fix now",
 };
 
 // assignments of call expressions to global constants are allowed without
@@ -60,11 +60,22 @@ const someFunction = () => {
 };
 ```
 
-<!--
-### Options
+## Options
 
-If there are any options, describe them here. Otherwise, delete this section.
--->
+### exceptions
+
+Type: `array`
+
+If you want to allow some global constants names to not adhere to the rule, you
+can specify these. E.g. if you want to use the constant names `π` and `e`, you
+can do sol like so:
+
+```json
+"budapestian/global-constant-pattern": [
+  "error",
+  { "exceptions": ["π", "e"] }
+]
+```
 
 ## When Not To Use It
 

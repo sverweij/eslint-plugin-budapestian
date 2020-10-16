@@ -149,6 +149,43 @@ ruleTester.run(
         ],
         output: "{ let lOne, lTwo, lThree = 123;}",
       },
+      // multiple declarations
+      {
+        code: "{ let one; let two; let three;}",
+        errors: [
+          {
+            message: `variable 'one' should be pascal case and start with an l: 'lOne'`,
+            type: "BlockStatement",
+          },
+          {
+            message: `variable 'two' should be pascal case and start with an l: 'lTwo'`,
+            type: "BlockStatement",
+          },
+          {
+            message: `variable 'three' should be pascal case and start with an l: 'lThree'`,
+            type: "BlockStatement",
+          },
+        ],
+        output: "{ let lOne; let lTwo; let lThree;}",
+      },
+      {
+        code: "{ const one = 1; const two = 2; const three = 3;}",
+        errors: [
+          {
+            message: `variable 'one' should be pascal case and start with an l: 'lOne'`,
+            type: "BlockStatement",
+          },
+          {
+            message: `variable 'two' should be pascal case and start with an l: 'lTwo'`,
+            type: "BlockStatement",
+          },
+          {
+            message: `variable 'three' should be pascal case and start with an l: 'lThree'`,
+            type: "BlockStatement",
+          },
+        ],
+        output: "{ const lOne = 1; const lTwo = 2; const lThree = 3;}",
+      },
       // leave variables outside the block scope alone
       {
         code:
@@ -341,6 +378,80 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
         },
       ],
       output: "for(let lValue in [7,8,9]){for(let index of [7,8,9]){}};",
+    },
+  ],
+});
+
+ruleTester.run("integration: local-variable-pattern - options", rule, {
+  valid: [
+    {
+      code: "{ let x, y;}",
+      options: [{ exceptions: ["x", "y"] }],
+    },
+    {
+      code: "{ let x = 0, y = 0;}",
+      options: [{ exceptions: ["x", "y"] }],
+    },
+    {
+      code: "{ const x = -1;}",
+      options: [{ exceptions: ["x", "y"] }],
+    },
+    {
+      code: "{ const x = 0, y = 0;}",
+      options: [{ exceptions: ["x", "y"] }],
+    },
+    {
+      code: "for (let i = 0; i < 10; i++) { lala[i] = i * i; }",
+      options: [{ exceptions: ["i", "j", "k"] }],
+    },
+    {
+      code: "for (let v in [7,8,9]) { result *= v; }",
+      options: [{ exceptions: ["v"] }],
+    },
+    {
+      code: "for (let i of [7,8,9]) { lala[i] = i * i; }",
+      options: [{ exceptions: ["i", "j", "k"] }],
+    },
+  ],
+  invalid: [
+    {
+      code: "{ let isnot, allowed;}",
+      options: [{ exceptions: ["x", "y"] }],
+      errors: [
+        {
+          message: `variable 'isnot' should be pascal case and start with an l: 'lIsnot'`,
+          type: "BlockStatement",
+        },
+        {
+          message: `variable 'allowed' should be pascal case and start with an l: 'lAllowed'`,
+          type: "BlockStatement",
+        },
+      ],
+      output: "{ let lIsnot, lAllowed;}",
+    },
+    {
+      code: "{ const isnot = 0;}",
+      options: [{ exceptions: ["x", "y"] }],
+      errors: [
+        {
+          message: `variable 'isnot' should be pascal case and start with an l: 'lIsnot'`,
+          type: "BlockStatement",
+        },
+      ],
+      output: "{ const lIsnot = 0;}",
+    },
+    {
+      code:
+        "for (let count = 0; count < 10; count++) { lala[count] = count * count; }",
+      options: [{ exceptions: ["i", "j", "k"] }],
+      errors: [
+        {
+          message: `variable 'count' should be pascal case and start with an l: 'lCount'`,
+          type: "ForStatement",
+        },
+      ],
+      output:
+        "for (let lCount = 0; lCount < 10; lCount++) { lala[lCount] = lCount * lCount; }",
     },
   ],
 });
