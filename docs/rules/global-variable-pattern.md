@@ -68,11 +68,22 @@ let someFunction = () => {
 };
 ```
 
-<!--
-### Options
+## Options
 
-If there are any options, describe them here. Otherwise, delete this section.
--->
+### exceptions
+
+Type: `array`
+
+If you want to allow some variable names to not adhere to the rule, you can
+specify these. E.g. if you want the variable name `actually_allowed` to be
+allowed as a global variable you can do this:
+
+```json
+"budapestian/global-variable-pattern": [
+  "error",
+  { "exceptions": ["actually_allowed", "tHiSoNe_too"] }
+]
+```
 
 ## When Not To Use It
 

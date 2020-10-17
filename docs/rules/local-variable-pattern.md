@@ -40,11 +40,23 @@ function f() {
 }
 ```
 
-<!--
-### Options
+## Options
 
-If there are any options, describe them here. Otherwise, delete this section.
--->
+### exceptions
+
+Type: `array`
+
+If you want to allow some variable names to not adhere to the rule, you can
+specify these. E.g. if you're doing a lot of calculations in 3 dimensions
+it might make sense to have the variables `x`, `y`, and `z` over anything
+else for readability purposes.
+
+```json
+"budapestian/local-variable-pattern": [
+  "error",
+  { "exceptions": ["x", "y", "z"] }
+]
+```
 
 ## When Not To Use It
 

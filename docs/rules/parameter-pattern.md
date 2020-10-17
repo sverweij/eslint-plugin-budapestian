@@ -15,15 +15,15 @@ function f(thing, callback) {
   // do stuff
 }
 
-const f = thing => {
+const f = (thing) => {
   /* do stuff */
 };
 
-const f = piedPiper => {
+const f = (piedPiper) => {
   /* do stuff */
 };
 
-const f = параметр => {
+const f = (параметр) => {
   /* do stuff */
 };
 ```
@@ -35,15 +35,15 @@ function f(pThing, pFunction) {
   // do stuff
 }
 
-const f = pThing => {
+const f = (pThing) => {
   /* do stuff */
 };
 
-const f = pPiedPiper => {
+const f = (pPiedPiper) => {
   /* do stuff */
 };
 
-const f = pПараметр => {
+const f = (pПараметр) => {
   /* do stuff */
 };
 
@@ -52,11 +52,21 @@ function f(_, pThing) {
 }
 ```
 
-<!--
-### Options
+## Options
 
-If there are any options, describe them here. Otherwise, delete this section.
--->
+### exceptions
+
+Type: `array`
+
+If you want to allow some parameter names to not adhere to the rule, you can
+specify these. E.g. if you want to allow `ekseption` as a parameter, do this:
+
+```json
+"budapestian/parameter-pattern": [
+  "error",
+  { "exceptions": ["ekseption"] }
+]
+```
 
 ## When Not To Use It
 

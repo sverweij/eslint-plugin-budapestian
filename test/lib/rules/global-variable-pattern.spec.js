@@ -22,6 +22,14 @@ ruleTester.run("integration: global-variable-pattern", rule, {
     "var gCapitals = 123, gMoreCapitals = '456'",
     "var gThing2SomeOtherThing = { one: 1, two: 2 }",
     "var gAnArray = ['aap', 'noot', 'mies']",
+    {
+      code: "let actually_allowed;",
+      options: [{ exceptions: ["actually_allowed"] }],
+    },
+    {
+      code: "var actually_allowed = 21;",
+      options: [{ exceptions: ["actually_allowed"] }],
+    },
   ],
 
   invalid: [
@@ -182,6 +190,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
     {
       code:
         "var SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
+      options: [{ exceptions: ["allowed_but_not_used_in_this_test"] }],
       errors: [
         {
           message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a g: 'gSomethingSomething'`,

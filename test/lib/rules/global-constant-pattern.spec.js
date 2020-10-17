@@ -13,11 +13,26 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     "const CAPITALS = 123, MORE_CAPITALS = '456'",
     "const THING2SOME_OTHER_THING = { one: 1, two: 2 }",
     "const AN_ARRAY = ['aap', 'noot', 'mies']",
+    {
+      code: "const π = 3.141592653589",
+      options: [{ exceptions: ["π", "e"] }],
+    },
   ],
 
   invalid: [
     {
       code: "const lowercase = 123",
+      errors: [
+        {
+          message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
+          type: "Program",
+        },
+      ],
+      output: "const LOWERCASE = 123",
+    },
+    {
+      code: "const lowercase = 123",
+      options: [{ exceptions: ["π", "e"] }],
       errors: [
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,

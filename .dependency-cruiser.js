@@ -208,7 +208,7 @@ module.exports = {
        folder the cruise is initiated from. Useful for how (some) mono-repos
        manage dependencies & dependency definitions.
      */
-    // combinedDependencies: false,
+    combinedDependencies: true,
 
     /* if true leave symlinks untouched, otherwise use the realpath */
     // preserveSymlinks: false,
