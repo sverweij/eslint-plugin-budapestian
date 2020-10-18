@@ -1,4 +1,4 @@
-const rule = require("../../../lib/rules/global-constant-pattern");
+const rule = require("../../../lib/rules/global-constant-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({
@@ -9,6 +9,9 @@ const ruleTester = new RuleTester({
 ruleTester.run("integration: global-constant-pattern", rule, {
   valid: [
     "const someModule = require('some-module')",
+    "const expect = require('chai').expect",
+    "const houWoeiRE = new RegExp('houwoei')",
+    "let thing = async () => {}; const godot = thing()",
     "const CAPITALS = 123",
     "const CAPITALS = 123, MORE_CAPITALS = '456'",
     "const THING2SOME_OTHER_THING = { one: 1, two: 2 }",
@@ -40,6 +43,28 @@ ruleTester.run("integration: global-constant-pattern", rule, {
         },
       ],
       output: "const LOWERCASE = 123",
+    },
+    {
+      code: "const lowercase = 1 * 2 * 3",
+      options: [{ exceptions: ["π", "e"] }],
+      errors: [
+        {
+          message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
+          type: "Program",
+        },
+      ],
+      output: "const LOWERCASE = 1 * 2 * 3",
+    },
+    {
+      code: "const THING = 1; const lowercase = THING",
+      options: [{ exceptions: ["π", "e"] }],
+      errors: [
+        {
+          message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
+          type: "Program",
+        },
+      ],
+      output: "const THING = 1; const LOWERCASE = THING",
     },
     // multi const declaration
     {

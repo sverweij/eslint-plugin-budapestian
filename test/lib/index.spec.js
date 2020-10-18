@@ -12,8 +12,10 @@ describe("plugin index", () => {
     expect(
       fs
         .readdirSync(path.join("lib", "rules"))
-        .filter((pFileName) => !pFileName.match(/utl/))
-        .map((pFileName) => pFileName.split(".").shift())
+        .filter((pFileName) => pFileName.match(/-rule\.js$/))
+        .map(
+          (pFileName) => pFileName.match(/^(?<name>\S*)-rule\.js$/).groups.name
+        )
         .sort()
     ).to.deep.equal(Object.keys(rules).sort());
   });

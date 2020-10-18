@@ -1,4 +1,4 @@
-const rule = require("../../../lib/rules/parameter-pattern");
+const rule = require("../../../lib/rules/parameter-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({
@@ -34,7 +34,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function doSomething(lala) { }",
       errors: [
         {
-          message: `parameter 'lala' should be pascal case and start with a p: 'pLala'`,
+          message: `parameter 'lala' should be pascal case and start with a 'p': 'pLala'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -44,7 +44,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function doSomething(param) { const lLala = param }",
       errors: [
         {
-          message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -54,7 +54,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "const f = (lalala) => { }",
       errors: [
         {
-          message: `parameter 'lalala' should be pascal case and start with a p: 'pLalala'`,
+          message: `parameter 'lalala' should be pascal case and start with a 'p': 'pLalala'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -64,7 +64,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function f(thing = pX => pX) { }",
       errors: [
         {
-          message: `parameter 'thing' should be pascal case and start with a p: 'pThing'`,
+          message: `parameter 'thing' should be pascal case and start with a 'p': 'pThing'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -74,7 +74,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function f(pThing = x => x) { }",
       errors: [
         {
-          message: `parameter 'x' should be pascal case and start with a p: 'pX'`,
+          message: `parameter 'x' should be pascal case and start with a 'p': 'pX'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -84,7 +84,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "const f = (piedpiper) => { }",
       errors: [
         {
-          message: `parameter 'piedpiper' should be pascal case and start with a p: 'pPiedpiper'`,
+          message: `parameter 'piedpiper' should be pascal case and start with a 'p': 'pPiedpiper'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -96,7 +96,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
         "function otherFunction() {let param = 123} function doSomething(param) { const lSomeConst = param }",
       errors: [
         {
-          message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -108,7 +108,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function doSomething(param) { const parameter = param }",
       errors: [
         {
-          message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -118,7 +118,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function doSomething(param) { const lConst=param }",
       errors: [
         {
-          message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -129,11 +129,11 @@ ruleTester.run("integration: parameter-pattern", rule, {
         "function doSomething(param, secondParam) { const lConst=param*secondParam }",
       errors: [
         {
-          message: `parameter 'param' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
         {
-          message: `parameter 'secondParam' should be pascal case and start with a p: 'pSecondParam'`,
+          message: `parameter 'secondParam' should be pascal case and start with a 'p': 'pSecondParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -145,7 +145,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
         "function doSomething(pParam, secondParam) { const lConst=pParam*secondParam }",
       errors: [
         {
-          message: `parameter 'secondParam' should be pascal case and start with a p: 'pSecondParam'`,
+          message: `parameter 'secondParam' should be pascal case and start with a 'p': 'pSecondParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -158,7 +158,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function doSomething(lParam) { const lConst=lParam*3 }",
       errors: [
         {
-          message: `parameter 'lParam' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'lParam' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -168,7 +168,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       code: "function doSomething(gParam) { const lConst=gParam*3 }",
       errors: [
         {
-          message: `parameter 'gParam' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'gParam' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -181,7 +181,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       options: [{ exceptions: ["EKSEPTION"] }],
       errors: [
         {
-          message: `parameter 'gParam' should be pascal case and start with a p: 'pParam'`,
+          message: `parameter 'gParam' should be pascal case and start with a 'p': 'pParam'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -203,7 +203,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       code: "function doSomething(параметр) { const lLala = параметр }",
       errors: [
         {
-          message: `parameter 'параметр' should be pascal case and start with a p: 'pПараметр'`,
+          message: `parameter 'параметр' should be pascal case and start with a 'p': 'pПараметр'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -213,7 +213,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       code: "const f = (функцияПараметр) => { }",
       errors: [
         {
-          message: `parameter 'функцияПараметр' should be pascal case and start with a p: 'pФункцияПараметр'`,
+          message: `parameter 'функцияПараметр' should be pascal case and start with a 'p': 'pФункцияПараметр'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -224,7 +224,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       code: "const f = (function_parameter) => { }",
       errors: [
         {
-          message: `parameter 'function_parameter' should be pascal case and start with a p: 'pFunctionParameter'`,
+          message: `parameter 'function_parameter' should be pascal case and start with a 'p': 'pFunctionParameter'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -234,7 +234,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       code: "const f = (функция_параметр) => { }",
       errors: [
         {
-          message: `parameter 'функция_параметр' should be pascal case and start with a p: 'pФункцияПараметр'`,
+          message: `parameter 'функция_параметр' should be pascal case and start with a 'p': 'pФункцияПараметр'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -244,7 +244,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       code: "const f = (ФУНКЦИЯ_ПАРАМЕТР) => { }",
       errors: [
         {
-          message: `parameter 'ФУНКЦИЯ_ПАРАМЕТР' should be pascal case and start with a p: 'pФункцияПараметр'`,
+          message: `parameter 'ФУНКЦИЯ_ПАРАМЕТР' should be pascal case and start with a 'p': 'pФункцияПараметр'`,
           type: "ArrowFunctionExpression",
         },
       ],
@@ -256,7 +256,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
         "function otherFunction() {let парам = 123} function doSomething(парам) { const lSomeConst = парам }",
       errors: [
         {
-          message: `parameter 'парам' should be pascal case and start with a p: 'pПарам'`,
+          message: `parameter 'парам' should be pascal case and start with a 'p': 'pПарам'`,
           type: "FunctionDeclaration",
         },
       ],
@@ -268,7 +268,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       code: "function doSomething(парам) { const параметр=парам }",
       errors: [
         {
-          message: `parameter 'парам' should be pascal case and start with a p: 'pПарам'`,
+          message: `parameter 'парам' should be pascal case and start with a 'p': 'pПарам'`,
           type: "FunctionDeclaration",
         },
       ],
