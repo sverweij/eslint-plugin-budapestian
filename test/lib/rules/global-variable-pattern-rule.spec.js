@@ -1,4 +1,4 @@
-const rule = require("../../../lib/rules/global-variable-pattern");
+const rule = require("../../../lib/rules/global-variable-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({
@@ -37,7 +37,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "let lowercase = 123",
       errors: [
         {
-          message: `global variable 'lowercase' should be pascal case and start with a g: 'gLowercase'`,
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
@@ -47,22 +47,62 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "var lowercase = 123",
       errors: [
         {
-          message: `global variable 'lowercase' should be pascal case and start with a g: 'gLowercase'`,
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
       output: "var gLowercase = 123",
+    },
+    {
+      code: "let lowercase = 1 * 2 * 3",
+      errors: [
+        {
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
+          type: "Program",
+        },
+      ],
+      output: "let gLowercase = 1 * 2 * 3",
+    },
+    {
+      code: "var lowercase = 1 * 2 * 3",
+      errors: [
+        {
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
+          type: "Program",
+        },
+      ],
+      output: "var gLowercase = 1 * 2 * 3",
+    },
+    {
+      code: "const THING = 123; let lowercase = THING",
+      errors: [
+        {
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
+          type: "Program",
+        },
+      ],
+      output: "const THING = 123; let gLowercase = THING",
+    },
+    {
+      code: "const THING = 123; var lowercase = THING",
+      errors: [
+        {
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
+          type: "Program",
+        },
+      ],
+      output: "const THING = 123; var gLowercase = THING",
     },
     // multi variable declarations
     {
       code: "let Uppercase = 123, lowercase = '456'",
       errors: [
         {
-          message: `global variable 'Uppercase' should be pascal case and start with a g: 'gUppercase'`,
+          message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
           type: "Program",
         },
         {
-          message: `global variable 'lowercase' should be pascal case and start with a g: 'gLowercase'`,
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
@@ -72,11 +112,11 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "var Uppercase = 123, lowercase = '456'",
       errors: [
         {
-          message: `global variable 'Uppercase' should be pascal case and start with a g: 'gUppercase'`,
+          message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
           type: "Program",
         },
         {
-          message: `global variable 'lowercase' should be pascal case and start with a g: 'gLowercase'`,
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
@@ -87,11 +127,11 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "let Uppercase = 123; let lowercase = '456'",
       errors: [
         {
-          message: `global variable 'Uppercase' should be pascal case and start with a g: 'gUppercase'`,
+          message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
           type: "Program",
         },
         {
-          message: `global variable 'lowercase' should be pascal case and start with a g: 'gLowercase'`,
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
@@ -101,11 +141,11 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "var Uppercase = 123; var lowercase = '456'",
       errors: [
         {
-          message: `global variable 'Uppercase' should be pascal case and start with a g: 'gUppercase'`,
+          message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
           type: "Program",
         },
         {
-          message: `global variable 'lowercase' should be pascal case and start with a g: 'gLowercase'`,
+          message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
@@ -116,7 +156,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "let SNAKE_CASE = 123",
       errors: [
         {
-          message: `global variable 'SNAKE_CASE' should be pascal case and start with a g: 'gSnakeCase'`,
+          message: `global variable 'SNAKE_CASE' should be pascal case and start with a 'g': 'gSnakeCase'`,
           type: "Program",
         },
       ],
@@ -126,7 +166,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "var SNAKE_CASE = 123",
       errors: [
         {
-          message: `global variable 'SNAKE_CASE' should be pascal case and start with a g: 'gSnakeCase'`,
+          message: `global variable 'SNAKE_CASE' should be pascal case and start with a 'g': 'gSnakeCase'`,
           type: "Program",
         },
       ],
@@ -137,7 +177,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "let lThisIsAGlobal = 123",
       errors: [
         {
-          message: `global variable 'lThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          message: `global variable 'lThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
@@ -147,7 +187,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "var lThisIsAGlobal = 123",
       errors: [
         {
-          message: `global variable 'lThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          message: `global variable 'lThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
@@ -158,7 +198,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "let pThisIsAGlobal = 123",
       errors: [
         {
-          message: `global variable 'pThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          message: `global variable 'pThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
@@ -168,7 +208,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       code: "var pThisIsAGlobal = 123",
       errors: [
         {
-          message: `global variable 'pThisIsAGlobal' should be pascal case and start with a g: 'gThisIsAGlobal'`,
+          message: `global variable 'pThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
@@ -180,7 +220,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
         "let SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
       errors: [
         {
-          message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a g: 'gSomethingSomething'`,
+          message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a 'g': 'gSomethingSomething'`,
           type: "Program",
         },
       ],
@@ -193,7 +233,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       options: [{ exceptions: ["allowed_but_not_used_in_this_test"] }],
       errors: [
         {
-          message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a g: 'gSomethingSomething'`,
+          message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a 'g': 'gSomethingSomething'`,
           type: "Program",
         },
       ],
@@ -218,7 +258,7 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
       code: "let ПЕРЕМЕННАЯ_ПЕРЕДАЧА = 123",
       errors: [
         {
-          message: `global variable 'ПЕРЕМЕННАЯ_ПЕРЕДАЧА' should be pascal case and start with a g: 'gПеременнаяПередача'`,
+          message: `global variable 'ПЕРЕМЕННАЯ_ПЕРЕДАЧА' should be pascal case and start with a 'g': 'gПеременнаяПередача'`,
           type: "Program",
         },
       ],
@@ -228,7 +268,7 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
       code: "var ПЕРЕМЕННАЯ_ПЕРЕДАЧА = 123",
       errors: [
         {
-          message: `global variable 'ПЕРЕМЕННАЯ_ПЕРЕДАЧА' should be pascal case and start with a g: 'gПеременнаяПередача'`,
+          message: `global variable 'ПЕРЕМЕННАЯ_ПЕРЕДАЧА' should be pascal case and start with a 'g': 'gПеременнаяПередача'`,
           type: "Program",
         },
       ],
