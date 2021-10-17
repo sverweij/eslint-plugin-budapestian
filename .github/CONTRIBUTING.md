@@ -25,7 +25,7 @@ a [FAQ](../doc/faq.md) that might help you out.
 
 - We prefer well documented
   **[pull requests](https://help.github.com/articles/creating-a-pull-request/)**
-  based on the most recent version of the **develop** branch.
+  based on the most recent version of the **master** branch.
 - Code quality
   - Additions pass eslint and depcruise (as configured for this repo)
   - Mocha tests prove your code does what it intends.

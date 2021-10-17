@@ -12,9 +12,9 @@ jobs:
       fail-fast: false
       matrix:
         node-version:
-          - 10.x
           - 12.x
           - 14.x
+          - 16.x
         platform:
           - ubuntu-latest
 
@@ -37,6 +37,8 @@ jobs:
       - name: install & build
         run: |
           node --version
+          # workaround to be able to still install under node 12 (which upem 7 doesn't agree with)
+          npm install upem@6
           npm install
         shell: bash
         env:
