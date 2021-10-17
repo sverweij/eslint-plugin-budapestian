@@ -69,25 +69,6 @@
       }
     ]
   },
-  "nyc": {
-    "statements": 100,
-    "branches": 100,
-    "functions": 100,
-    "lines": 100,
-    "exclude": [
-      "*.js",
-      "coverage/**/*",
-      "tmp*",
-      "docs/**/*",
-      "test/**/*"
-    ],
-    "reporter": [
-      "text-summary",
-      "html",
-      "lcov"
-    ],
-    "all": true
-  },
   "files": [
     "lib",
     "!lib/package.json",
