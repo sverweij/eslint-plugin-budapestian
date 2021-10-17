@@ -92,8 +92,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
     },
     // only replace within own scope
     {
-      code:
-        "function otherFunction() {let param = 123} function doSomething(param) { const lSomeConst = param }",
+      code: "function otherFunction() {let param = 123} function doSomething(param) { const lSomeConst = param }",
       errors: [
         {
           message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
@@ -125,8 +124,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
       output: "function doSomething(pParam) { const lConst=pParam }",
     },
     {
-      code:
-        "function doSomething(param, secondParam) { const lConst=param*secondParam }",
+      code: "function doSomething(param, secondParam) { const lConst=param*secondParam }",
       errors: [
         {
           message: `parameter 'param' should be pascal case and start with a 'p': 'pParam'`,
@@ -141,8 +139,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
         "function doSomething(pParam, pSecondParam) { const lConst=pParam*pSecondParam }",
     },
     {
-      code:
-        "function doSomething(pParam, secondParam) { const lConst=pParam*secondParam }",
+      code: "function doSomething(pParam, secondParam) { const lConst=pParam*secondParam }",
       errors: [
         {
           message: `parameter 'secondParam' should be pascal case and start with a 'p': 'pSecondParam'`,
@@ -176,8 +173,7 @@ ruleTester.run("integration: parameter-pattern", rule, {
     },
     //
     {
-      code:
-        "function doSomething(gParam, EKSEPTION) { const lConst=gParam*EKSEPTION }",
+      code: "function doSomething(gParam, EKSEPTION) { const lConst=gParam*EKSEPTION }",
       options: [{ exceptions: ["EKSEPTION"] }],
       errors: [
         {
@@ -252,8 +248,7 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
     },
     // only replace within own scope
     {
-      code:
-        "function otherFunction() {let парам = 123} function doSomething(парам) { const lSomeConst = парам }",
+      code: "function otherFunction() {let парам = 123} function doSomething(парам) { const lSomeConst = парам }",
       errors: [
         {
           message: `parameter 'парам' should be pascal case and start with a 'p': 'pПарам'`,

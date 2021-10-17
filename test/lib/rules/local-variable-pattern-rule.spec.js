@@ -232,8 +232,7 @@ ruleTester.run(
       },
       // leave variables outside the block scope alone
       {
-        code:
-          "let variable = '123'; function doSomething() { let variable = 123; for (let counter = 1; counter < 10; counter++) { variable += variable}; return variable;}",
+        code: "let variable = '123'; function doSomething() { let variable = 123; for (let counter = 1; counter < 10; counter++) { variable += variable}; return variable;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
@@ -268,8 +267,7 @@ ruleTester.run("integration: local-variable-pattern - for statement", rule, {
       output: "for(let lCounter=0;lCounter<10;lCounter++){}",
     },
     {
-      code:
-        "function f(){for(let counter=0;counter<10;counter++){var i = counter + i}}",
+      code: "function f(){for(let counter=0;counter<10;counter++){var i = counter + i}}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
@@ -393,8 +391,7 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
       output: "for(let lValue in [7,8,9]){};for(let lIndex of [7,8,9]){};",
     },
     {
-      code:
-        "let variable = '123'; function doSomething() { let variable = 123; for (let counter = 1; counter < 10; counter++) { variable += variable}; return variable;}",
+      code: "let variable = '123'; function doSomething() { let variable = 123; for (let counter = 1; counter < 10; counter++) { variable += variable}; return variable;}",
       errors: [
         {
           message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
@@ -485,8 +482,7 @@ ruleTester.run("integration: local-variable-pattern - options", rule, {
       output: "{ const lIsnot = 0;}",
     },
     {
-      code:
-        "for (let count = 0; count < 10; count++) { lala[count] = count * count; }",
+      code: "for (let count = 0; count < 10; count++) { lala[count] = count * count; }",
       options: [{ exceptions: ["i", "j", "k"] }],
       errors: [
         {

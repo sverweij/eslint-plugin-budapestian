@@ -216,8 +216,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
     },
     // global replace
     {
-      code:
-        "let SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
+      code: "let SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
       errors: [
         {
           message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a 'g': 'gSomethingSomething'`,
@@ -228,8 +227,7 @@ ruleTester.run("integration: global-variable-pattern", rule, {
         "let gSomethingSomething = 123; function f (pBla) { return gSomethingSomething * pBla }",
     },
     {
-      code:
-        "var SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
+      code: "var SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
       options: [{ exceptions: ["allowed_but_not_used_in_this_test"] }],
       errors: [
         {

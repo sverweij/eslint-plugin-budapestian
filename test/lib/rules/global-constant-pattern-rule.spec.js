@@ -145,8 +145,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     },
     // global replace
     {
-      code:
-        "const lowercase = 123; function f (pBla) { return lowercase * pBla }",
+      code: "const lowercase = 123; function f (pBla) { return lowercase * pBla }",
       errors: [
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
