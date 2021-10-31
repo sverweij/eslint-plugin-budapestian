@@ -1,6 +1,7 @@
 # Enforce global constants adhere to a pattern (global-constant-pattern)
 
-This rule enforces that global _literal_ constants are ALL_CAPS_SNAKE_CASE.
+This rule enforces that global _literal_, _array_, _object_ and _binary expression_
+constants as well as constants that got an identifier assigned are ALL_CAPS_SNAKE_CASE.
 
 🔧 The `--fix option` on the command line renames these constants to adhere to the pattern
 taking existing snake and camel casing into account (someGlobalConstant => SOME_GLOBAL_CONSTANT)
@@ -27,6 +28,12 @@ const severity2coolness = {
   warn: "not cool - fix later",
   error: "very uncool - fix now",
 };
+
+// ass well as binary expressions:
+const dayInSeconds = 24 * 60 * 60;
+
+// ... and identifiers
+const jourEnSecondes = dayInSeconds;
 ```
 
 Examples of **correct** code for this rule:
@@ -48,6 +55,12 @@ const SEVERITY2COOLNESS = {
   warn: "not cool - fix later",
   error: "very uncool - fix now",
 };
+
+// binary expressions are OK too:
+const DAY_IN_SECONDS = 24 * 60 * 60;
+
+// ... and identifiers
+const JOUR_EN_SECONDES = DAY_IN_SECONDS;
 
 // assignments of call expressions to global constants are allowed without
 // them having to be snaked upper case.
