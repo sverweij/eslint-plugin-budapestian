@@ -30,153 +30,154 @@ ruleTester.run(
       // uninitialized
       {
         code: "{ let variable;}",
+        output: "{ let lVariable;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ let lVariable;}",
       },
       // initialized with a single literal value
       {
         code: "{ let variable = 481;}",
+        output: "{ let lVariable = 481;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ let lVariable = 481;}",
       },
       {
         code: "{ const variable = 481;}",
+        output: "{ const lVariable = 481;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lVariable = 481;}",
       },
       // initialized with an array
       {
         code: "{ let variable = ['this', 'is', 'an', 'array'];}",
+        output: "{ let lVariable = ['this', 'is', 'an', 'array'];}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ let lVariable = ['this', 'is', 'an', 'array'];}",
       },
       {
         code: "{ const variable = ['this', 'is', 'an', 'array'];}",
+        output: "{ const lVariable = ['this', 'is', 'an', 'array'];}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lVariable = ['this', 'is', 'an', 'array'];}",
       },
       // initialized with an object
       {
         code: "{ let variable = {};}",
+        output: "{ let lVariable = {};}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ let lVariable = {};}",
       },
       {
         code: "{ const variable = {};}",
+        output: "{ const lVariable = {};}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lVariable = {};}",
       },
       // initialized with an binary expression
       {
         code: "{ let variable = 1 + 1;}",
+        output: "{ let lVariable = 1 + 1;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ let lVariable = 1 + 1;}",
       },
       {
         code: "{ const variable = 1 + 1;}",
+        output: "{ const lVariable = 1 + 1;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lVariable = 1 + 1;}",
       },
       // initialized with a constant
       {
         code: "{ const lThing = 2; let variable = lThing;}",
+        output: "{ const lThing = 2; let lVariable = lThing;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lThing = 2; let lVariable = lThing;}",
       },
       {
         code: "{ const lThing = 2; const variable = lThing;}",
+        output: "{ const lThing = 2; const lVariable = lThing;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lThing = 2; const lVariable = lThing;}",
       },
       // smartly replace other budapestian prefixes
       {
         code: "{ let gVariable;}",
+        output: "{ let lVariable;}",
         errors: [
           {
             message: `local variable 'gVariable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ let lVariable;}",
       },
       {
         code: "{ const pVariable = 481;}",
+        output: "{ const lVariable = 481;}",
         errors: [
           {
             message: `local variable 'pVariable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "{ const lVariable = 481;}",
       },
       {
         code: "function doSomething() { let variable;}",
+        output: "function doSomething() { let lVariable;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
             type: "BlockStatement",
           },
         ],
-        output: "function doSomething() { let lVariable;}",
       },
       // multiple declaration
       {
         code: "{ let one, two, three = 123;}",
+        output: "{ let lOne, lTwo, lThree = 123;}",
         errors: [
           {
             message: `local variable 'one' should be pascal case and start with a 'l': 'lOne'`,
@@ -191,11 +192,11 @@ ruleTester.run(
             type: "BlockStatement",
           },
         ],
-        output: "{ let lOne, lTwo, lThree = 123;}",
       },
       // multiple declarations
       {
         code: "{ let one; let two; let three;}",
+        output: "{ let lOne; let lTwo; let lThree;}",
         errors: [
           {
             message: `local variable 'one' should be pascal case and start with a 'l': 'lOne'`,
@@ -210,10 +211,10 @@ ruleTester.run(
             type: "BlockStatement",
           },
         ],
-        output: "{ let lOne; let lTwo; let lThree;}",
       },
       {
         code: "{ const one = 1; const two = 2; const three = 3;}",
+        output: "{ const lOne = 1; const lTwo = 2; const lThree = 3;}",
         errors: [
           {
             message: `local variable 'one' should be pascal case and start with a 'l': 'lOne'`,
@@ -228,11 +229,12 @@ ruleTester.run(
             type: "BlockStatement",
           },
         ],
-        output: "{ const lOne = 1; const lTwo = 2; const lThree = 3;}",
       },
       // leave variables outside the block scope alone
       {
         code: "let variable = '123'; function doSomething() { let variable = 123; for (let counter = 1; counter < 10; counter++) { variable += variable}; return variable;}",
+        output:
+          "let variable = '123'; function doSomething() { let lVariable = 123; for (let counter = 1; counter < 10; counter++) { lVariable += lVariable}; return lVariable;}",
         errors: [
           {
             message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
@@ -243,8 +245,6 @@ ruleTester.run(
             type: "ForStatement",
           },
         ],
-        output:
-          "let variable = '123'; function doSomething() { let lVariable = 123; for (let counter = 1; counter < 10; counter++) { lVariable += lVariable}; return lVariable;}",
       },
     ],
   }
@@ -258,24 +258,24 @@ ruleTester.run("integration: local-variable-pattern - for statement", rule, {
   invalid: [
     {
       code: "for(let counter=0;counter<10;counter++){}",
+      output: "for(let lCounter=0;lCounter<10;lCounter++){}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
           type: "ForStatement",
         },
       ],
-      output: "for(let lCounter=0;lCounter<10;lCounter++){}",
     },
     {
       code: "function f(){for(let counter=0;counter<10;counter++){var i = counter + i}}",
+      output:
+        "function f(){for(let lCounter=0;lCounter<10;lCounter++){var i = lCounter + i}}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
           type: "ForStatement",
         },
       ],
-      output:
-        "function f(){for(let lCounter=0;lCounter<10;lCounter++){var i = lCounter + i}}",
     },
   ],
 });
@@ -285,24 +285,24 @@ ruleTester.run("integration: local-variable-pattern - for-in statement", rule, {
   invalid: [
     {
       code: "for(let counter in [7,8,9]){}",
+      output: "for(let lCounter in [7,8,9]){}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
           type: "ForInStatement",
         },
       ],
-      output: "for(let lCounter in [7,8,9]){}",
     },
     {
       code: "function f(){for(let counter in [7,8,9]){var i = counter + i}}",
+      output:
+        "function f(){for(let lCounter in [7,8,9]){var i = lCounter + i}}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
           type: "ForInStatement",
         },
       ],
-      output:
-        "function f(){for(let lCounter in [7,8,9]){var i = lCounter + i}}",
     },
   ],
 });
@@ -312,24 +312,24 @@ ruleTester.run("integration: local-variable-pattern - for-of statement", rule, {
   invalid: [
     {
       code: "for(let counter of [7,8,9]){}",
+      output: "for(let lCounter of [7,8,9]){}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
           type: "ForOfStatement",
         },
       ],
-      output: "for(let lCounter of [7,8,9]){}",
     },
     {
       code: "function f(){for(let counter of [7,8,9]){var i = counter + i}}",
+      output:
+        "function f(){for(let lCounter of [7,8,9]){var i = lCounter + i}}",
       errors: [
         {
           message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
           type: "ForOfStatement",
         },
       ],
-      output:
-        "function f(){for(let lCounter of [7,8,9]){var i = lCounter + i}}",
     },
   ],
 });
@@ -340,6 +340,7 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
   invalid: [
     {
       code: "{let outer = 123; {let inner = 456; outer++}}",
+      output: "{let lOuter = 123; {let inner = 456; lOuter++}}",
       errors: [
         {
           message: `local variable 'outer' should be pascal case and start with a 'l': 'lOuter'`,
@@ -350,10 +351,10 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
           type: "BlockStatement",
         },
       ],
-      output: "{let lOuter = 123; {let inner = 456; lOuter++}}",
     },
     {
       code: "{let first = 123; let second = 456; first++}",
+      output: "{let lFirst = 123; let lSecond = 456; lFirst++}",
       errors: [
         {
           message: `local variable 'first' should be pascal case and start with a 'l': 'lFirst'`,
@@ -364,20 +365,20 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
           type: "BlockStatement",
         },
       ],
-      output: "{let lFirst = 123; let lSecond = 456; lFirst++}",
     },
     {
       code: "{let lOkido = 123; {let inner = 456; lOkido++}}",
+      output: "{let lOkido = 123; {let lInner = 456; lOkido++}}",
       errors: [
         {
           message: `local variable 'inner' should be pascal case and start with a 'l': 'lInner'`,
           type: "BlockStatement",
         },
       ],
-      output: "{let lOkido = 123; {let lInner = 456; lOkido++}}",
     },
     {
       code: "for(let value in [7,8,9]){};for(let index of [7,8,9]){};",
+      output: "for(let lValue in [7,8,9]){};for(let lIndex of [7,8,9]){};",
       errors: [
         {
           message: `local variable 'value' should be pascal case and start with a 'l': 'lValue'`,
@@ -388,10 +389,11 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
           type: "ForOfStatement",
         },
       ],
-      output: "for(let lValue in [7,8,9]){};for(let lIndex of [7,8,9]){};",
     },
     {
       code: "let variable = '123'; function doSomething() { let variable = 123; for (let counter = 1; counter < 10; counter++) { variable += variable}; return variable;}",
+      output:
+        "let variable = '123'; function doSomething() { let lVariable = 123; for (let counter = 1; counter < 10; counter++) { lVariable += lVariable}; return lVariable;}",
       errors: [
         {
           message: `local variable 'variable' should be pascal case and start with a 'l': 'lVariable'`,
@@ -402,12 +404,11 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
           type: "ForStatement",
         },
       ],
-      output:
-        "let variable = '123'; function doSomething() { let lVariable = 123; for (let counter = 1; counter < 10; counter++) { lVariable += lVariable}; return lVariable;}",
     },
     // overlapping, also with for loops cannot be wholly fixed
     {
       code: "for(let value in [7,8,9]){for(let index of [7,8,9]){}};",
+      output: "for(let lValue in [7,8,9]){for(let index of [7,8,9]){}};",
       errors: [
         {
           message: `local variable 'value' should be pascal case and start with a 'l': 'lValue'`,
@@ -418,7 +419,6 @@ ruleTester.run("integration: local-variable-pattern - combo's", rule, {
           type: "ForOfStatement",
         },
       ],
-      output: "for(let lValue in [7,8,9]){for(let index of [7,8,9]){}};",
     },
   ],
 });
@@ -457,6 +457,7 @@ ruleTester.run("integration: local-variable-pattern - options", rule, {
   invalid: [
     {
       code: "{ let isnot, allowed;}",
+      output: "{ let lIsnot, lAllowed;}",
       options: [{ exceptions: ["x", "y"] }],
       errors: [
         {
@@ -468,10 +469,10 @@ ruleTester.run("integration: local-variable-pattern - options", rule, {
           type: "BlockStatement",
         },
       ],
-      output: "{ let lIsnot, lAllowed;}",
     },
     {
       code: "{ const isnot = 0;}",
+      output: "{ const lIsnot = 0;}",
       options: [{ exceptions: ["x", "y"] }],
       errors: [
         {
@@ -479,10 +480,11 @@ ruleTester.run("integration: local-variable-pattern - options", rule, {
           type: "BlockStatement",
         },
       ],
-      output: "{ const lIsnot = 0;}",
     },
     {
       code: "for (let count = 0; count < 10; count++) { lala[count] = count * count; }",
+      output:
+        "for (let lCount = 0; lCount < 10; lCount++) { lala[lCount] = lCount * lCount; }",
       options: [{ exceptions: ["i", "j", "k"] }],
       errors: [
         {
@@ -490,8 +492,6 @@ ruleTester.run("integration: local-variable-pattern - options", rule, {
           type: "ForStatement",
         },
       ],
-      output:
-        "for (let lCount = 0; lCount < 10; lCount++) { lala[lCount] = lCount * lCount; }",
     },
   ],
 });

@@ -4,7 +4,12 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
-  extends: ["eslint:recommended", "prettier", "plugin:budapestian/recommended"],
+  extends: [
+    "eslint:recommended",
+    "prettier",
+    "plugin:eslint-plugin/all",
+    "plugin:budapestian/recommended",
+  ],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",

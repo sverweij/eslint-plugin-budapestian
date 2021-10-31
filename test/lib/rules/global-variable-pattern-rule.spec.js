@@ -35,67 +35,68 @@ ruleTester.run("integration: global-variable-pattern", rule, {
   invalid: [
     {
       code: "let lowercase = 123",
+      output: "let gLowercase = 123",
       errors: [
         {
           message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
-      output: "let gLowercase = 123",
     },
     {
       code: "var lowercase = 123",
+      output: "var gLowercase = 123",
       errors: [
         {
           message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
-      output: "var gLowercase = 123",
     },
     {
       code: "let lowercase = 1 * 2 * 3",
+      output: "let gLowercase = 1 * 2 * 3",
       errors: [
         {
           message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
-      output: "let gLowercase = 1 * 2 * 3",
     },
     {
       code: "var lowercase = 1 * 2 * 3",
+      output: "var gLowercase = 1 * 2 * 3",
       errors: [
         {
           message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
-      output: "var gLowercase = 1 * 2 * 3",
     },
     {
       code: "const THING = 123; let lowercase = THING",
+      output: "const THING = 123; let gLowercase = THING",
       errors: [
         {
           message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
-      output: "const THING = 123; let gLowercase = THING",
     },
     {
       code: "const THING = 123; var lowercase = THING",
+      output: "const THING = 123; var gLowercase = THING",
       errors: [
         {
           message: `global variable 'lowercase' should be pascal case and start with a 'g': 'gLowercase'`,
           type: "Program",
         },
       ],
-      output: "const THING = 123; var gLowercase = THING",
     },
     // multi variable declarations
     {
       code: "let Uppercase = 123, lowercase = '456'",
+      output: "let gUppercase = 123, gLowercase = '456'",
       errors: [
         {
           message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
@@ -106,10 +107,10 @@ ruleTester.run("integration: global-variable-pattern", rule, {
           type: "Program",
         },
       ],
-      output: "let gUppercase = 123, gLowercase = '456'",
     },
     {
       code: "var Uppercase = 123, lowercase = '456'",
+      output: "var gUppercase = 123, gLowercase = '456'",
       errors: [
         {
           message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
@@ -120,11 +121,11 @@ ruleTester.run("integration: global-variable-pattern", rule, {
           type: "Program",
         },
       ],
-      output: "var gUppercase = 123, gLowercase = '456'",
     },
     // multiple variable declarations
     {
       code: "let Uppercase = 123; let lowercase = '456'",
+      output: "let gUppercase = 123; let gLowercase = '456'",
       errors: [
         {
           message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
@@ -135,10 +136,10 @@ ruleTester.run("integration: global-variable-pattern", rule, {
           type: "Program",
         },
       ],
-      output: "let gUppercase = 123; let gLowercase = '456'",
     },
     {
       code: "var Uppercase = 123; var lowercase = '456'",
+      output: "var gUppercase = 123; var gLowercase = '456'",
       errors: [
         {
           message: `global variable 'Uppercase' should be pascal case and start with a 'g': 'gUppercase'`,
@@ -149,85 +150,86 @@ ruleTester.run("integration: global-variable-pattern", rule, {
           type: "Program",
         },
       ],
-      output: "var gUppercase = 123; var gLowercase = '456'",
     },
     // upper snake case handling
     {
       code: "let SNAKE_CASE = 123",
+      output: "let gSnakeCase = 123",
       errors: [
         {
           message: `global variable 'SNAKE_CASE' should be pascal case and start with a 'g': 'gSnakeCase'`,
           type: "Program",
         },
       ],
-      output: "let gSnakeCase = 123",
     },
     {
       code: "var SNAKE_CASE = 123",
+      output: "var gSnakeCase = 123",
       errors: [
         {
           message: `global variable 'SNAKE_CASE' should be pascal case and start with a 'g': 'gSnakeCase'`,
           type: "Program",
         },
       ],
-      output: "var gSnakeCase = 123",
     },
     // if it looks like a local variable, but it's global => just replace the prefix
     {
       code: "let lThisIsAGlobal = 123",
+      output: "let gThisIsAGlobal = 123",
       errors: [
         {
           message: `global variable 'lThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
-      output: "let gThisIsAGlobal = 123",
     },
     {
       code: "var lThisIsAGlobal = 123",
+      output: "var gThisIsAGlobal = 123",
       errors: [
         {
           message: `global variable 'lThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
-      output: "var gThisIsAGlobal = 123",
     },
     // if it looks like a parameter, but it's global => just replace the prefix
     {
       code: "let pThisIsAGlobal = 123",
+      output: "let gThisIsAGlobal = 123",
       errors: [
         {
           message: `global variable 'pThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
-      output: "let gThisIsAGlobal = 123",
     },
     {
       code: "var pThisIsAGlobal = 123",
+      output: "var gThisIsAGlobal = 123",
       errors: [
         {
           message: `global variable 'pThisIsAGlobal' should be pascal case and start with a 'g': 'gThisIsAGlobal'`,
           type: "Program",
         },
       ],
-      output: "var gThisIsAGlobal = 123",
     },
     // global replace
     {
       code: "let SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
+      output:
+        "let gSomethingSomething = 123; function f (pBla) { return gSomethingSomething * pBla }",
       errors: [
         {
           message: `global variable 'SOMETHING_SOMETHING' should be pascal case and start with a 'g': 'gSomethingSomething'`,
           type: "Program",
         },
       ],
-      output:
-        "let gSomethingSomething = 123; function f (pBla) { return gSomethingSomething * pBla }",
     },
     {
       code: "var SOMETHING_SOMETHING = 123; function f (pBla) { return SOMETHING_SOMETHING * pBla }",
+      output:
+        "var gSomethingSomething = 123; function f (pBla) { return gSomethingSomething * pBla }",
       options: [{ exceptions: ["allowed_but_not_used_in_this_test"] }],
       errors: [
         {
@@ -235,8 +237,6 @@ ruleTester.run("integration: global-variable-pattern", rule, {
           type: "Program",
         },
       ],
-      output:
-        "var gSomethingSomething = 123; function f (pBla) { return gSomethingSomething * pBla }",
     },
   ],
 });
@@ -254,23 +254,23 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
   invalid: [
     {
       code: "let ПЕРЕМЕННАЯ_ПЕРЕДАЧА = 123",
+      output: "let gПеременнаяПередача = 123",
       errors: [
         {
           message: `global variable 'ПЕРЕМЕННАЯ_ПЕРЕДАЧА' should be pascal case and start with a 'g': 'gПеременнаяПередача'`,
           type: "Program",
         },
       ],
-      output: "let gПеременнаяПередача = 123",
     },
     {
       code: "var ПЕРЕМЕННАЯ_ПЕРЕДАЧА = 123",
+      output: "var gПеременнаяПередача = 123",
       errors: [
         {
           message: `global variable 'ПЕРЕМЕННАЯ_ПЕРЕДАЧА' should be pascal case and start with a 'g': 'gПеременнаяПередача'`,
           type: "Program",
         },
       ],
-      output: "var gПеременнаяПередача = 123",
     },
   ],
 });
