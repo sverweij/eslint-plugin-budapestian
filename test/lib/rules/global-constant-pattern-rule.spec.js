@@ -6,16 +6,21 @@ const ruleTester = new RuleTester({
     ecmaVersion: 2018,
   },
 });
+
 ruleTester.run("integration: global-constant-pattern", rule, {
   valid: [
-    "const someModule = require('some-module')",
-    "const expect = require('chai').expect",
-    "const houWoeiRE = new RegExp('houwoei')",
-    "let thing = async () => {}; const godot = thing()",
-    "const CAPITALS = 123",
-    "const CAPITALS = 123, MORE_CAPITALS = '456'",
-    "const THING2SOME_OTHER_THING = { one: 1, two: 2 }",
-    "const AN_ARRAY = ['aap', 'noot', 'mies']",
+    "const callExpression = require('some-module')",
+    "const memberExpression= require('chai').expect",
+    "const newExpression = new RegExp('houwoei')",
+    "const newExpression = new Set()",
+    "const arrowFunctionExpression = async () => {}; const callExpression = thing()",
+    "const someFunction = () => 123",
+    "const someFunction = function(){ return 123 }",
+    "const LITERAL = 123",
+    "const LITERAL = 123, ANOTHER_LITERAL = '456'",
+    "const OBJECT_EXPRESSION = { one: 1, two: 2 }",
+    "const ARRAY_EXPRESSION = ['aap', 'noot', 'mies']",
+    "const OBJECT_EXPRESSION = {}",
     {
       code: "const π = 3.141592653589",
       options: [{ exceptions: ["π", "e"] }],
@@ -66,6 +71,17 @@ ruleTester.run("integration: global-constant-pattern", rule, {
       ],
       output: "const THING = 1; const LOWERCASE = THING",
     },
+    {
+      code: "const π = 3.141592653589",
+      options: [{ exceptions: ["e"] }],
+      errors: [
+        {
+          message: `global constant 'π' should be snaked upper case: 'Π'`,
+          type: "Program",
+        },
+      ],
+      output: "const Π = 3.141592653589",
+    },
     // multi const declaration
     {
       code: "const Uppercase = 123, lowercase = '456'",
@@ -95,6 +111,28 @@ ruleTester.run("integration: global-constant-pattern", rule, {
         },
       ],
       output: `const UPPERCASE = 123; const LOWERCASE = '456'`,
+    },
+    // Array expressions
+    {
+      code: "const arrayExpression = [123, '321']",
+      errors: [
+        {
+          message: `global constant 'arrayExpression' should be snaked upper case: 'ARRAY_EXPRESSION'`,
+          type: "Program",
+        },
+      ],
+      output: `const ARRAY_EXPRESSION = [123, '321']`,
+    },
+    // Object expressions
+    {
+      code: "const objectExpression = {}",
+      errors: [
+        {
+          message: `global constant 'objectExpression' should be snaked upper case: 'OBJECT_EXPRESSION'`,
+          type: "Program",
+        },
+      ],
+      output: `const OBJECT_EXPRESSION = {}`,
     },
     // properly decamlize and then snake case
     {
