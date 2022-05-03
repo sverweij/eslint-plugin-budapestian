@@ -30,7 +30,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
   invalid: [
     {
       code: "const lowercase = 123",
-      output: "const LOWERCASE = 123",
+      // output: "const LOWERCASE = 123",
       errors: [
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
@@ -40,7 +40,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     },
     {
       code: "const lowercase = 123",
-      output: "const LOWERCASE = 123",
+      // output: "const LOWERCASE = 123",
       options: [{ exceptions: ["π", "e"] }],
       errors: [
         {
@@ -51,7 +51,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     },
     {
       code: "const lowercase = 1 * 2 * 3",
-      output: "const LOWERCASE = 1 * 2 * 3",
+      // output: "const LOWERCASE = 1 * 2 * 3",
       options: [{ exceptions: ["π", "e"] }],
       errors: [
         {
@@ -62,7 +62,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     },
     {
       code: "const THING = 1; const lowercase = THING",
-      output: "const THING = 1; const LOWERCASE = THING",
+      // output: "const THING = 1; const LOWERCASE = THING",
       options: [{ exceptions: ["π", "e"] }],
       errors: [
         {
@@ -73,7 +73,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     },
     {
       code: "const π = 3.141592653589",
-      output: "const Π = 3.141592653589",
+      // output: "const Π = 3.141592653589",
       options: [{ exceptions: ["e"] }],
       errors: [
         {
@@ -85,7 +85,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // multi const declaration
     {
       code: "const Uppercase = 123, lowercase = '456'",
-      output: "const UPPERCASE = 123, LOWERCASE = '456'",
+      // output: "const UPPERCASE = 123, LOWERCASE = '456'",
       errors: [
         {
           message: `global constant 'Uppercase' should be snaked upper case: 'UPPERCASE'`,
@@ -100,7 +100,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // multiple const declarations
     {
       code: "const Uppercase = 123; const lowercase = '456'",
-      output: `const UPPERCASE = 123; const LOWERCASE = '456'`,
+      // output: `const UPPERCASE = 123; const LOWERCASE = '456'`,
       errors: [
         {
           message: `global constant 'Uppercase' should be snaked upper case: 'UPPERCASE'`,
@@ -115,7 +115,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // Array expressions
     {
       code: "const arrayExpression = [123, '321']",
-      output: `const ARRAY_EXPRESSION = [123, '321']`,
+      // output: `const ARRAY_EXPRESSION = [123, '321']`,
       errors: [
         {
           message: `global constant 'arrayExpression' should be snaked upper case: 'ARRAY_EXPRESSION'`,
@@ -126,7 +126,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // Object expressions
     {
       code: "const objectExpression = {}",
-      output: `const OBJECT_EXPRESSION = {}`,
+      // output: `const OBJECT_EXPRESSION = {}`,
       errors: [
         {
           message: `global constant 'objectExpression' should be snaked upper case: 'OBJECT_EXPRESSION'`,
@@ -137,7 +137,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // properly decamlize and then snake case
     {
       code: "const camelCase = 123",
-      output: "const CAMEL_CASE = 123",
+      // output: "const CAMEL_CASE = 123",
       errors: [
         {
           message: `global constant 'camelCase' should be snaked upper case: 'CAMEL_CASE'`,
@@ -149,7 +149,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // strip the prefix before de-camelizing & uppering
     {
       code: "const lThisIsNotALocalVariable = 123",
-      output: "const THIS_IS_NOT_A_LOCAL_VARIABLE = 123",
+      // output: "const THIS_IS_NOT_A_LOCAL_VARIABLE = 123",
       errors: [
         {
           message: `global constant 'lThisIsNotALocalVariable' should be snaked upper case: 'THIS_IS_NOT_A_LOCAL_VARIABLE'`,
@@ -161,7 +161,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // strip the prefix before de-camelizing & uppering
     {
       code: "const gNotAGlobalVariable = 123",
-      output: "const NOT_A_GLOBAL_VARIABLE = 123",
+      // output: "const NOT_A_GLOBAL_VARIABLE = 123",
       errors: [
         {
           message: `global constant 'gNotAGlobalVariable' should be snaked upper case: 'NOT_A_GLOBAL_VARIABLE'`,
@@ -173,7 +173,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // strip the prefix before de-camelizing & uppering
     {
       code: "const pNotAParameter = 123",
-      output: "const NOT_A_PARAMETER = 123",
+      // output: "const NOT_A_PARAMETER = 123",
       errors: [
         {
           message: `global constant 'pNotAParameter' should be snaked upper case: 'NOT_A_PARAMETER'`,
@@ -184,8 +184,8 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     // global replace
     {
       code: "const lowercase = 123; function f (pBla) { return lowercase * pBla }",
-      output:
-        "const LOWERCASE = 123; function f (pBla) { return LOWERCASE * pBla }",
+      // output:
+      //   "const LOWERCASE = 123; function f (pBla) { return LOWERCASE * pBla }",
       errors: [
         {
           message: `global constant 'lowercase' should be snaked upper case: 'LOWERCASE'`,
@@ -206,7 +206,7 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
   invalid: [
     {
       code: "const константаУлучшение = 123",
-      output: "const КОНСТАНТА_УЛУЧШЕНИЕ = 123",
+      // output: "const КОНСТАНТА_УЛУЧШЕНИЕ = 123",
       errors: [
         {
           message: `global constant 'константаУлучшение' should be snaked upper case: 'КОНСТАНТА_УЛУЧШЕНИЕ'`,
