@@ -3,8 +3,12 @@
 This rule enforces that global _literal_, _array_, _object_ and _binary expression_
 constants as well as constants that got an identifier assigned are ALL_CAPS_SNAKE_CASE.
 
-🔧 The `--fix option` on the command line renames these constants to adhere to the pattern
-taking existing snake and camel casing into account (someGlobalConstant => SOME_GLOBAL_CONSTANT)
+~~🔧 The `--fix option` on the command line renames these constants to adhere to the pattern
+taking existing snake and camel casing into account (someGlobalConstant => SOME_GLOBAL_CONSTANT)~~
+
+> In version 3.0.2 the fix option for this rule has been switched off
+> temporarily as it was a bit too enthousiastic on occasion. It might return
+> in a future version.
 
 ## Rule Details
 

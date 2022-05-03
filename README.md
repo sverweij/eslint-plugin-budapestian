@@ -159,7 +159,7 @@ Then configure the rules you want to use under the rules section.
 | yes           | [budapestian/parameter-pattern](docs/rules/parameter-pattern.md)             | pascal case function parameters and make them start with a `p` |
 | yes           | [budapestian/global-variable-pattern](docs/rules/global-variable-pattern.md) | pascal case global variables and make them start with a `g`    |
 | yes           | [budapestian/local-variable-pattern](docs/rules/local-variable-pattern.md)   | pascal case local variables and make them start with an `l`    |
-| yes           | [budapestian/global-constant-pattern](docs/rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
+| ~~yes~~ no    | [budapestian/global-constant-pattern](docs/rules/global-constant-pattern.md) | makes sure global constants are in snaked upper case.          |
 
 ## Flare'n status section
 
