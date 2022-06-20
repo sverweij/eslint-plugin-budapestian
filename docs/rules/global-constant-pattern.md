@@ -38,6 +38,9 @@ const dayInSeconds = 24 * 60 * 60;
 
 // ... and identifiers
 const jourEnSecondes = dayInSeconds;
+
+// the rule also extends to exported constants
+export const exportedGlobalConst = "something";
 ```
 
 Examples of **correct** code for this rule:
@@ -65,6 +68,9 @@ const DAY_IN_SECONDS = 24 * 60 * 60;
 
 // ... and identifiers
 const JOUR_EN_SECONDES = DAY_IN_SECONDS;
+
+// exported consts are taken into account as well
+export const EXPORTED_GLOBAL_CONST = "something";
 
 // assignments of call expressions to global constants are allowed without
 // them having to be snaked upper case.
