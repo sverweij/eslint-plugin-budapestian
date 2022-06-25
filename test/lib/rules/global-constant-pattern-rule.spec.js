@@ -4,6 +4,7 @@ const RuleTester = require("eslint").RuleTester;
 const ruleTester = new RuleTester({
   parserOptions: {
     ecmaVersion: 2018,
+    sourceType: "module",
   },
 });
 
@@ -210,6 +211,27 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
       errors: [
         {
           message: `global constant 'константаУлучшение' should be snaked upper case: 'КОНСТАНТА_УЛУЧШЕНИЕ'`,
+          type: "Program",
+        },
+      ],
+    },
+  ],
+});
+
+ruleTester.run("integration: global-constant-pattern - export edition", rule, {
+  valid: ['export const MY_GLOBAL_CONSTANT = "something";'],
+
+  invalid: [
+    {
+      code: 'export const myGlobalConstant = "something"; export const anOtherGlobalConst = "something else"',
+      // output: 'const MY_GLOBAL_CONSTANT = "something"',
+      errors: [
+        {
+          message: `global constant 'myGlobalConstant' should be snaked upper case: 'MY_GLOBAL_CONSTANT'`,
+          type: "Program",
+        },
+        {
+          message: `global constant 'anOtherGlobalConst' should be snaked upper case: 'AN_OTHER_GLOBAL_CONST'`,
           type: "Program",
         },
       ],
