@@ -32,6 +32,7 @@
     "test": "mocha test --recursive",
     "test:cover": "c8 --check-coverage --statements 100 --branches 100 --functions 100 --lines 100 --reporter text-summary --reporter html npm test",
     "update-dependencies": "npm-run-all upem:update upem:install lint:fix test",
+    "upem-outdated": "npm outdated --json --long | upem --dry-run",
     "upem:install": "npm install",
     "upem:update": "npm outdated --json --long | upem | pbcopy && pbpaste",
     "version": "npm-run-all check depcruise:graph scm:stage"
@@ -51,7 +52,7 @@
     "mocha": "10.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
-    "upem": "7.2.0"
+    "upem": "7.3.0"
   },
   "peerDependencies": {
     "eslint": ">=7"
