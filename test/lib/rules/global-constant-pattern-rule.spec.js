@@ -17,6 +17,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     "const arrowFunctionExpression = async () => {}; const callExpression = thing()",
     "const someFunction = () => 123",
     "const someFunction = function(){ return 123 }",
+    "type SomeType = string",
     "const LITERAL = 123",
     "const LITERAL = 123, ANOTHER_LITERAL = '456'",
     "const OBJECT_EXPRESSION = { one: 1, two: 2 }",
