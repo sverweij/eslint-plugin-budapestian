@@ -1,12 +1,20 @@
 const rule = require("../../../lib/rules/parameter-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
-const ruleTester = new RuleTester({
+const ruleTesterTypeScriptParser = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaVersion: 2018,
   },
 });
-ruleTester.run("integration: parameter-pattern", rule, {
+
+const ruleTesterDefaultParser = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 2018,
+  },
+});
+
+const PARAMETER_PATTERN_CASES = {
   valid: [
     "function doSomething(pLalala) { }",
     "function doSomething() { }",
@@ -185,9 +193,20 @@ ruleTester.run("integration: parameter-pattern", rule, {
       ],
     },
   ],
-});
+};
+ruleTesterTypeScriptParser.run(
+  "integration: parameter-pattern - TypeScript parser",
+  rule,
+  PARAMETER_PATTERN_CASES
+);
 
-ruleTester.run("integration: parameter-pattern unicode", rule, {
+ruleTesterDefaultParser.run(
+  "integration: parameter-pattern - default parser",
+  rule,
+  PARAMETER_PATTERN_CASES
+);
+
+const PARAMETER_PATTERN_UNICODE_CASES = {
   valid: [
     "function функция (pПараметр) { }",
     "const ф = (pПараметр) => { }",
@@ -270,4 +289,16 @@ ruleTester.run("integration: parameter-pattern unicode", rule, {
       ],
     },
   ],
-});
+};
+
+ruleTesterTypeScriptParser.run(
+  "integration: parameter-pattern unicode - TypeScript parser",
+  rule,
+  PARAMETER_PATTERN_UNICODE_CASES
+);
+
+ruleTesterDefaultParser.run(
+  "integration: parameter-pattern unicode - default parser",
+  rule,
+  PARAMETER_PATTERN_UNICODE_CASES
+);
