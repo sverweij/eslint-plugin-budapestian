@@ -2,6 +2,7 @@ const rule = require("../../../lib/rules/global-constant-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
