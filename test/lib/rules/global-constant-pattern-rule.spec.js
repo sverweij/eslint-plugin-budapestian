@@ -2,6 +2,7 @@ const rule = require("../../../lib/rules/global-constant-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTester = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
@@ -17,6 +18,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     "const arrowFunctionExpression = async () => {}; const callExpression = thing()",
     "const someFunction = () => 123",
     "const someFunction = function(){ return 123 }",
+    "type SomeType = string",
     "const LITERAL = 123",
     "const LITERAL = 123, ANOTHER_LITERAL = '456'",
     "const OBJECT_EXPRESSION = { one: 1, two: 2 }",
