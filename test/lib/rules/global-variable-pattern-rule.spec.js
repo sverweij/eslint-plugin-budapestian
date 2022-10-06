@@ -1,12 +1,20 @@
 const rule = require("../../../lib/rules/global-variable-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
-const ruleTester = new RuleTester({
+const ruleTesterTypeScriptParser = new RuleTester({
+  parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaVersion: 2018,
   },
 });
-ruleTester.run("integration: global-variable-pattern", rule, {
+
+const ruleTesterDefaultParser = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 2018,
+  },
+});
+
+const GLOBAL_VARIABLE_CASES = {
   valid: [
     "let someModule = require('some-module')",
     "let gGlobalVariable;",
@@ -239,9 +247,21 @@ ruleTester.run("integration: global-variable-pattern", rule, {
       ],
     },
   ],
-});
+};
 
-ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
+ruleTesterTypeScriptParser.run(
+  "integration: global-variable-pattern - TypeScript parser",
+  rule,
+  GLOBAL_VARIABLE_CASES
+);
+
+ruleTesterDefaultParser.run(
+  "integration: global-variable-pattern - default parser",
+  rule,
+  GLOBAL_VARIABLE_CASES
+);
+
+const GLOBAL_VARIABLE_UNICODE_CASES = {
   valid: [
     "let какойТоМодуль = require('some-module')",
     "let gПаскальКейс = 123",
@@ -273,4 +293,16 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
       ],
     },
   ],
-});
+};
+
+ruleTesterTypeScriptParser.run(
+  "integration: global-constant-pattern - unicode edition - TypeScript parser",
+  rule,
+  GLOBAL_VARIABLE_UNICODE_CASES
+);
+
+ruleTesterDefaultParser.run(
+  "integration: global-constant-pattern - unicode edition - default parser",
+  rule,
+  GLOBAL_VARIABLE_UNICODE_CASES
+);

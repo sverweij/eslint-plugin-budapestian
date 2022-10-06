@@ -1,7 +1,7 @@
 const rule = require("../../../lib/rules/global-constant-pattern-rule");
 const RuleTester = require("eslint").RuleTester;
 
-const ruleTester = new RuleTester({
+const ruleTesterTypeScriptParser = new RuleTester({
   parser: require.resolve("@typescript-eslint/parser"),
   parserOptions: {
     ecmaVersion: 2018,
@@ -9,7 +9,14 @@ const ruleTester = new RuleTester({
   },
 });
 
-ruleTester.run("integration: global-constant-pattern", rule, {
+const ruleTesterDefaultParser = new RuleTester({
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: "module",
+  },
+});
+
+const GLOBAL_CONSTANT_CASES = {
   valid: [
     "const callExpression = require('some-module')",
     "const memberExpression= require('chai').expect",
@@ -18,7 +25,7 @@ ruleTester.run("integration: global-constant-pattern", rule, {
     "const arrowFunctionExpression = async () => {}; const callExpression = thing()",
     "const someFunction = () => 123",
     "const someFunction = function(){ return 123 }",
-    "type SomeType = string",
+
     "const LITERAL = 123",
     "const LITERAL = 123, ANOTHER_LITERAL = '456'",
     "const OBJECT_EXPRESSION = { one: 1, two: 2 }",
@@ -197,9 +204,30 @@ ruleTester.run("integration: global-constant-pattern", rule, {
       ],
     },
   ],
-});
+};
 
-ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
+ruleTesterTypeScriptParser.run(
+  "integration: global-constant-pattern - TypeScript parser",
+  rule,
+  GLOBAL_CONSTANT_CASES
+);
+
+ruleTesterTypeScriptParser.run(
+  "integration: global-constant-pattern - TypeScript specials - TypeScript parser",
+  rule,
+  {
+    valid: ["type SomeType = string"],
+    invalid: [],
+  }
+);
+
+ruleTesterDefaultParser.run(
+  "integration: global-constant-pattern - default parser",
+  rule,
+  GLOBAL_CONSTANT_CASES
+);
+
+const GLOBAL_CONSTANT_UNICODE_CASES = {
   valid: [
     "const какойТоМодуль = require('some-module')",
     "const ВЕРХНИЙ_РЕГИСТР = 123",
@@ -218,9 +246,21 @@ ruleTester.run("integration: global-constant-pattern - unicode edition", rule, {
       ],
     },
   ],
-});
+};
 
-ruleTester.run("integration: global-constant-pattern - export edition", rule, {
+ruleTesterTypeScriptParser.run(
+  "integration: global-constant-pattern - unicode edition - TypeScript parser",
+  rule,
+  GLOBAL_CONSTANT_UNICODE_CASES
+);
+
+ruleTesterDefaultParser.run(
+  "integration: global-constant-pattern - unicode edition - default parser",
+  rule,
+  GLOBAL_CONSTANT_UNICODE_CASES
+);
+
+const GLOBAL_CONSTANT_EXPORT_PATTERN_CASES = {
   valid: ['export const MY_GLOBAL_CONSTANT = "something";'],
 
   invalid: [
@@ -239,4 +279,16 @@ ruleTester.run("integration: global-constant-pattern - export edition", rule, {
       ],
     },
   ],
-});
+};
+
+ruleTesterTypeScriptParser.run(
+  "integration: global-constant-pattern - export edition - TypeScript parser",
+  rule,
+  GLOBAL_CONSTANT_EXPORT_PATTERN_CASES
+);
+
+ruleTesterDefaultParser.run(
+  "integration: global-constant-pattern - export edition - default parser",
+  rule,
+  GLOBAL_CONSTANT_EXPORT_PATTERN_CASES
+);
