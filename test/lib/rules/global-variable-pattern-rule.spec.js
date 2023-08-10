@@ -252,13 +252,13 @@ const GLOBAL_VARIABLE_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: global-variable-pattern - TypeScript parser",
   rule,
-  GLOBAL_VARIABLE_CASES
+  GLOBAL_VARIABLE_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: global-variable-pattern - default parser",
   rule,
-  GLOBAL_VARIABLE_CASES
+  GLOBAL_VARIABLE_CASES,
 );
 
 const GLOBAL_VARIABLE_UNICODE_CASES = {
@@ -298,11 +298,11 @@ const GLOBAL_VARIABLE_UNICODE_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: global-constant-pattern - unicode edition - TypeScript parser",
   rule,
-  GLOBAL_VARIABLE_UNICODE_CASES
+  GLOBAL_VARIABLE_UNICODE_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: global-constant-pattern - unicode edition - default parser",
   rule,
-  GLOBAL_VARIABLE_UNICODE_CASES
+  GLOBAL_VARIABLE_UNICODE_CASES,
 );

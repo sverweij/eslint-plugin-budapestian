@@ -11,7 +11,7 @@ describe("ast-utl - getVariableDeclaratorName edge cases", () => {
   it("returns the name if the variable declarator is an object with an id object that has a name", () => {
     equal(
       astUtl.getVariableDeclaratorName({ id: { name: "A_NAME" } }),
-      "A_NAME"
+      "A_NAME",
     );
   });
 });
@@ -26,13 +26,13 @@ describe("ast-utl - getParameterDeclaratorName edge cases", () => {
   it("returns the name if the variable declarator is an object with an id object that has a name", () => {
     equal(
       astUtl.getParameterDeclaratorName({ name: "pParameter" }),
-      "pParameter"
+      "pParameter",
     );
   });
   it("returns the name if the variable declarator is an object with an id object that has a name", () => {
     equal(
       astUtl.getParameterDeclaratorName({ left: { name: "pParameter" } }),
-      "pParameter"
+      "pParameter",
     );
   });
 });

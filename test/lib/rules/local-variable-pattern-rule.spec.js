@@ -257,13 +257,13 @@ const LOCAL_VARIABLE_BLOCK_SCOPE_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: local-variable-pattern - regular block scope variables - TypeScript parser",
   rule,
-  LOCAL_VARIABLE_BLOCK_SCOPE_CASES
+  LOCAL_VARIABLE_BLOCK_SCOPE_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: local-variable-pattern - regular block scope variables - default parser",
   rule,
-  LOCAL_VARIABLE_BLOCK_SCOPE_CASES
+  LOCAL_VARIABLE_BLOCK_SCOPE_CASES,
 );
 
 const LOCAL_VARIABLE_FOR_STATEMENT_CASES = {
@@ -299,13 +299,13 @@ const LOCAL_VARIABLE_FOR_STATEMENT_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: local-variable-pattern - for statement - TypeScript parser",
   rule,
-  LOCAL_VARIABLE_FOR_STATEMENT_CASES
+  LOCAL_VARIABLE_FOR_STATEMENT_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: local-variable-pattern - for statement - default parser",
   rule,
-  LOCAL_VARIABLE_FOR_STATEMENT_CASES
+  LOCAL_VARIABLE_FOR_STATEMENT_CASES,
 );
 
 const LOCAL_VARIABLE_FOR_IN_STATEMENT_CASES = {
@@ -338,7 +338,7 @@ const LOCAL_VARIABLE_FOR_IN_STATEMENT_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: local-variable-pattern - for-in statement - TypeScript parser",
   rule,
-  LOCAL_VARIABLE_FOR_IN_STATEMENT_CASES
+  LOCAL_VARIABLE_FOR_IN_STATEMENT_CASES,
 );
 
 ruleTesterTypeScriptParser.run(
@@ -369,7 +369,7 @@ ruleTesterTypeScriptParser.run(
         ],
       },
     ],
-  }
+  },
 );
 
 const LOCAL_VARIABLE_COMBO_CASES = {
@@ -464,13 +464,13 @@ const LOCAL_VARIABLE_COMBO_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: local-variable-pattern - combo's - TypeScript parser",
   rule,
-  LOCAL_VARIABLE_COMBO_CASES
+  LOCAL_VARIABLE_COMBO_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: local-variable-pattern - combo's - default parser",
   rule,
-  LOCAL_VARIABLE_COMBO_CASES
+  LOCAL_VARIABLE_COMBO_CASES,
 );
 
 const LOCAL_VARIABLE_OPTIONS_CASES = {
@@ -549,11 +549,11 @@ const LOCAL_VARIABLE_OPTIONS_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: local-variable-pattern - options - TypeScript parser",
   rule,
-  LOCAL_VARIABLE_OPTIONS_CASES
+  LOCAL_VARIABLE_OPTIONS_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: local-variable-pattern - options - default parser",
   rule,
-  LOCAL_VARIABLE_OPTIONS_CASES
+  LOCAL_VARIABLE_OPTIONS_CASES,
 );

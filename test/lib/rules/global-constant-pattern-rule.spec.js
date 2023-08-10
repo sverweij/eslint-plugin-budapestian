@@ -209,7 +209,7 @@ const GLOBAL_CONSTANT_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: global-constant-pattern - TypeScript parser",
   rule,
-  GLOBAL_CONSTANT_CASES
+  GLOBAL_CONSTANT_CASES,
 );
 
 ruleTesterTypeScriptParser.run(
@@ -218,13 +218,13 @@ ruleTesterTypeScriptParser.run(
   {
     valid: ["type SomeType = string"],
     invalid: [],
-  }
+  },
 );
 
 ruleTesterDefaultParser.run(
   "integration: global-constant-pattern - default parser",
   rule,
-  GLOBAL_CONSTANT_CASES
+  GLOBAL_CONSTANT_CASES,
 );
 
 const GLOBAL_CONSTANT_UNICODE_CASES = {
@@ -251,13 +251,13 @@ const GLOBAL_CONSTANT_UNICODE_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: global-constant-pattern - unicode edition - TypeScript parser",
   rule,
-  GLOBAL_CONSTANT_UNICODE_CASES
+  GLOBAL_CONSTANT_UNICODE_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: global-constant-pattern - unicode edition - default parser",
   rule,
-  GLOBAL_CONSTANT_UNICODE_CASES
+  GLOBAL_CONSTANT_UNICODE_CASES,
 );
 
 const GLOBAL_CONSTANT_EXPORT_PATTERN_CASES = {
@@ -284,11 +284,11 @@ const GLOBAL_CONSTANT_EXPORT_PATTERN_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: global-constant-pattern - export edition - TypeScript parser",
   rule,
-  GLOBAL_CONSTANT_EXPORT_PATTERN_CASES
+  GLOBAL_CONSTANT_EXPORT_PATTERN_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: global-constant-pattern - export edition - default parser",
   rule,
-  GLOBAL_CONSTANT_EXPORT_PATTERN_CASES
+  GLOBAL_CONSTANT_EXPORT_PATTERN_CASES,
 );

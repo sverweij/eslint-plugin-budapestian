@@ -20,10 +20,10 @@
   },
   "scripts": {
     "check": "npm-run-all lint test:cover",
-    "depcruise:graph": "depcruise --config .dependency-cruiser.js --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
+    "depcruise:graph": "depcruise --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
     "lint": "npm-run-all lint:eslint lint:prettier lint:dependency-cruiser",
     "lint:fix": "npm-run-all lint:eslint:fix lint:prettier:fix",
-    "lint:dependency-cruiser": "depcruise --config .dependency-cruiser.js -- lib test",
+    "lint:dependency-cruiser": "depcruise lib test",
     "lint:eslint": "eslint lib test",
     "lint:eslint:fix": "eslint --fix lib test",
     "lint:prettier": "prettier --loglevel log --check lib test *.js *.json .github",
@@ -42,21 +42,21 @@
     "decamelize": "^4.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "5.39.0",
-    "c8": "7.12.0",
-    "dependency-cruiser": "11.16.1",
-    "eslint": "8.24.0",
-    "eslint-config-prettier": "8.5.0",
+    "@typescript-eslint/parser": "6.3.0",
+    "c8": "8.0.1",
+    "dependency-cruiser": "13.1.2",
+    "eslint": "8.46.0",
+    "eslint-config-prettier": "9.0.0",
     "eslint-plugin-budapestian": "file:./lib",
-    "eslint-plugin-eslint-plugin": "5.0.6",
-    "mocha": "10.0.0",
+    "eslint-plugin-eslint-plugin": "5.1.1",
+    "mocha": "10.2.0",
     "npm-run-all": "4.1.5",
-    "prettier": "2.7.1",
-    "typescript": "4.8.4",
-    "upem": "7.3.0"
+    "prettier": "3.0.1",
+    "typescript": "5.1.6",
+    "upem": "8.0.0"
   },
   "peerDependencies": {
-    "eslint": ">=7"
+    "eslint": ">=8"
   },
   "upem": {
     "policies": [

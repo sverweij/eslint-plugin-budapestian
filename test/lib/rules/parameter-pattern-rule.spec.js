@@ -197,13 +197,13 @@ const PARAMETER_PATTERN_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: parameter-pattern - TypeScript parser",
   rule,
-  PARAMETER_PATTERN_CASES
+  PARAMETER_PATTERN_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: parameter-pattern - default parser",
   rule,
-  PARAMETER_PATTERN_CASES
+  PARAMETER_PATTERN_CASES,
 );
 
 const PARAMETER_PATTERN_UNICODE_CASES = {
@@ -294,11 +294,11 @@ const PARAMETER_PATTERN_UNICODE_CASES = {
 ruleTesterTypeScriptParser.run(
   "integration: parameter-pattern unicode - TypeScript parser",
   rule,
-  PARAMETER_PATTERN_UNICODE_CASES
+  PARAMETER_PATTERN_UNICODE_CASES,
 );
 
 ruleTesterDefaultParser.run(
   "integration: parameter-pattern unicode - default parser",
   rule,
-  PARAMETER_PATTERN_UNICODE_CASES
+  PARAMETER_PATTERN_UNICODE_CASES,
 );

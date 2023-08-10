@@ -15,10 +15,10 @@ describe("plugin index", () => {
         .readdirSync(path.join("lib", "rules"))
         .filter((pFileName) => pFileName.match(/-rule\.js$/))
         .map(
-          (pFileName) => pFileName.match(/^(?<name>\S*)-rule\.js$/).groups.name
+          (pFileName) => pFileName.match(/^(?<name>\S*)-rule\.js$/).groups.name,
         )
         .sort(),
-      Object.keys(rules).sort()
+      Object.keys(rules).sort(),
     );
   });
 });
