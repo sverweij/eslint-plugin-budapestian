@@ -32,7 +32,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
+          key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package-lock.json')}}
           restore-keys: |
             ${{matrix.node-version}}@${{matrix.platform}}-build-
       - uses: actions/setup-node@v4
@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: .cache
-          key: ${{matrix.node-version}}@${{matrix.platform}}-build-eslint-${{hashFiles('package.json')}}
+          key: ${{matrix.node-version}}@${{matrix.platform}}-build-eslint-${{hashFiles('package-lock.json')}}
           restore-keys: |
             ${{matrix.node-version}}@${{matrix.platform}}-build-eslint-
         if: matrix.platform == 'ubuntu-latest' && matrix.node-version == env.NODE_LATEST
@@ -66,7 +66,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{env.NODE_LATEST}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
+          key: ${{env.NODE_LATEST}}@${{matrix.platform}}-build-${{hashFiles('package-lock.json')}}
           restore-keys: |
             ${{env.NODE_LATEST}}@${{matrix.platform}}-build-
       - uses: actions/setup-node@v4
