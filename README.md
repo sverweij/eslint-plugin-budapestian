@@ -163,6 +163,6 @@ Then configure the rules you want to use under the rules section.
 
 ## Flare'n status section
 
-![linting & test coverage - linux](https://github.com/sverweij/eslint-plugin-budapestian/workflows/linting%20&%20test%20coverage%20-%20linux/badge.svg)
+[![linting & test coverage](https://github.com/sverweij/eslint-plugin-budapestian/actions/workflows/ci.yml/badge.svg)](https://github.com/sverweij/eslint-plugin-budapestian/actions/workflows/ci.yml)
 [![npm stable version](https://img.shields.io/npm/v/eslint-plugin-budapestian.svg?logo=npm)](https://npmjs.com/package/eslint-plugin-budapestian)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
