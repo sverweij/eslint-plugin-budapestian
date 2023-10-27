@@ -169,8 +169,7 @@ module.exports = {
     },
     moduleSystems: ["cjs"],
 
-    prefix:
-      "https://github.com/sverweij/eslint-plugin-budapestian/blob/master/",
+    prefix: "https://github.com/sverweij/eslint-plugin-budapestian/blob/main/",
 
     combinedDependencies: true,
     reporterOptions: {
