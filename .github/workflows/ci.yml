@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  NODE_LATEST: 20.x
+  NODE_LATEST: 21.x
   CI: true
 
 defaults:
@@ -20,8 +20,8 @@ jobs:
       fail-fast: false
       matrix:
         node-version:
-          - 16.x
-          - 20.x
+          - 18.x
+          - 21.x
         platform:
           - ubuntu-latest
 
@@ -35,11 +35,10 @@ jobs:
           key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
           restore-keys: |
             ${{matrix.node-version}}@${{matrix.platform}}-build-
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{matrix.node-version}}
-      - name: install & build
-        run: npm install
+      - run: npm install
       - name: cache eslint for ${{matrix.node-version}}@${{matrix.platform}} (run on one platform only)
         uses: actions/cache@v3
         with:
@@ -51,8 +50,7 @@ jobs:
       - name: lint (run on one platform only)
         if: matrix.platform == 'ubuntu-latest' && matrix.node-version == env.NODE_LATEST
         run: npm run lint
-      - name: test + coverage
-        run: npm run test:cover
+      - run: npm run test:cover
 
   check-windows:
     strategy:
@@ -71,10 +69,8 @@ jobs:
           key: ${{env.NODE_LATEST}}@${{matrix.platform}}-build-${{hashFiles('package.json')}}
           restore-keys: |
             ${{env.NODE_LATEST}}@${{matrix.platform}}-build-
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_LATEST}}
-      - name: install & build
-        run: npm install
-      - name: test
-        run: npm run test:cover
+      - run: npm install
+      - run: npm run test:cover
