@@ -1,4 +1,4 @@
-const rule = require("../../../lib/rules/local-variable-pattern-rule");
+const rule = require("#rules/local-variable-pattern-rule.js");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTesterTypeScriptParser = new RuleTester({

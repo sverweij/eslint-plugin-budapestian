@@ -58,6 +58,9 @@
     "typescript": "5.2.2",
     "upem": "9.0.2"
   },
+  "imports": {
+    "#*": "./lib/*"
+  },
   "peerDependencies": {
     "eslint": ">=8"
   },

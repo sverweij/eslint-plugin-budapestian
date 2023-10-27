@@ -1,8 +1,8 @@
 /* eslint-disable no-prototype-builtins */
-const fs = require("fs");
-const path = require("path");
-const { rules } = require("../../lib/");
 const { deepEqual, equal } = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const { rules } = require("#index.js");
 
 describe("plugin index", () => {
   it("should have a parameter-pattern rule", () => {

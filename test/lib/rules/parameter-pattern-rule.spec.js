@@ -1,4 +1,4 @@
-const rule = require("../../../lib/rules/parameter-pattern-rule");
+const rule = require("#rules/parameter-pattern-rule.js");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTesterTypeScriptParser = new RuleTester({

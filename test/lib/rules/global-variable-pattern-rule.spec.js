@@ -1,4 +1,4 @@
-const rule = require("../../../lib/rules/global-variable-pattern-rule");
+const rule = require("#rules/global-variable-pattern-rule.js");
 const RuleTester = require("eslint").RuleTester;
 
 const ruleTesterTypeScriptParser = new RuleTester({

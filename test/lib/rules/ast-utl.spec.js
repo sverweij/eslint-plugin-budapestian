@@ -1,4 +1,4 @@
-const astUtl = require("../../../lib/rules/ast-utl.js");
+const astUtl = require("#rules/ast-utl.js");
 const { equal } = require("node:assert/strict");
 
 describe("ast-utl - getVariableDeclaratorName edge cases", () => {
