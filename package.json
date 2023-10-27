@@ -16,7 +16,7 @@
   "homepage": "https://github.com/sverweij/eslint-plugin-budapestian",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sverweij/eslint-plugin-budapestian"
+    "url": "git+https://github.com/sverweij/eslint-plugin-budapestian.git"
   },
   "scripts": {
     "check": "npm-run-all lint test:cover",
