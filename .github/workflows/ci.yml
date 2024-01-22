@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package-lock.json')}}
@@ -40,7 +40,7 @@ jobs:
           node-version: ${{matrix.node-version}}
       - run: npm install
       - name: cache eslint for ${{matrix.node-version}}@${{matrix.platform}} (run on one platform only)
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: .cache
           key: ${{matrix.node-version}}@${{matrix.platform}}-build-eslint-${{hashFiles('package-lock.json')}}
@@ -63,7 +63,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{env.NODE_LATEST}}@${{matrix.platform}}-build-${{hashFiles('package-lock.json')}}
