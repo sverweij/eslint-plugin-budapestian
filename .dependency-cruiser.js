@@ -22,7 +22,7 @@ module.exports = {
         "dependency-cruiser configuration.",
       from: {
         orphan: true,
-        pathNot: "\\.d\\.ts$",
+        pathNot: "[.]d[.]ts$",
       },
       to: {},
     },
@@ -33,7 +33,7 @@ module.exports = {
         "If there's one or more modules in the lib folder not accessible from the index, they're probably " +
         "'dead wood', which means they can be removed safely.",
       from: {
-        path: "^lib/index\\.js$",
+        path: "^lib/index[.]js$",
       },
       to: {
         path: "^lib",
@@ -125,7 +125,7 @@ module.exports = {
       severity: "error",
       from: {},
       to: {
-        path: "\\.spec\\.js$",
+        path: "[.]spec[.]js$",
       },
     },
     {
@@ -139,7 +139,7 @@ module.exports = {
         "from.pathNot re of the not-to-dev-dep rule in the dependency-cruiser configuration",
       from: {
         path: "^(lib)",
-        pathNot: "\\.spec\\.js$",
+        pathNot: "[.]spec[.]js$",
       },
       to: {
         dependencyTypes: ["npm-dev"],
@@ -152,7 +152,7 @@ module.exports = {
         "This module depends on an npm package that is declared as an optional dependency " +
         "in your package.json. As this makes sense in limited situations only, it's flagged here. " +
         "If you're using an optional dependency here by design - add an exception to your" +
-        "depdency-cruiser configuration.",
+        "dependency-cruiser configuration.",
       from: {},
       to: {
         dependencyTypes: ["npm-optional"],
