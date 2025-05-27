@@ -165,9 +165,9 @@ module.exports = {
     },
 
     enhancedResolveOptions: {
-      extensions: [".js"],
+      extensions: [".js", ".mjs"],
     },
-    moduleSystems: ["cjs"],
+    moduleSystems: ["cjs", "es6"],
 
     prefix: "https://github.com/sverweij/eslint-plugin-budapestian/blob/main/",
 

@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  NODE_LATEST: 22.x
+  NODE_LATEST: 24.x
   CI: true
 
 defaults:
@@ -21,7 +21,7 @@ jobs:
       matrix:
         node-version:
           - 18.x
-          - 22.x
+          - 24.x
         platform:
           - ubuntu-latest
 
@@ -50,7 +50,12 @@ jobs:
       - name: lint (run on one platform only)
         if: matrix.platform == 'ubuntu-latest' && matrix.node-version == env.NODE_LATEST
         run: npm run lint
-      - run: npm run test:cover
+      - name: test coverage (run on one platform only)
+        if: matrix.platform == 'ubuntu-latest' && matrix.node-version == env.NODE_LATEST
+        run: npm run test:cover
+      - name: test
+        if: matrix.platform == 'ubuntu-latest' && matrix.node-version != env.NODE_LATEST
+        run: npm test
 
   check-windows:
     strategy:
