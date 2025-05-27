@@ -1,5 +1,8 @@
-const rule = require("#rules/parameter-pattern-rule.js");
-const RuleTester = require("eslint").RuleTester;
+import rule from "#rules/parameter-pattern-rule.js";
+import { RuleTester } from "eslint";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 
 const ruleTesterTypeScriptParser = new RuleTester({
   parser: require.resolve("@typescript-eslint/parser"),
