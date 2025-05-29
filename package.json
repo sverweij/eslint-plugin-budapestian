@@ -41,8 +41,8 @@
     "version": "npm-run-all check depcruise:graph scm:stage"
   },
   "dependencies": {
-    "camelcase": "^6.3.0",
-    "decamelize": "^4.0.0"
+    "camelcase": "^8.0.0",
+    "decamelize": "^6.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "8.33.0",
@@ -64,20 +64,6 @@
   },
   "peerDependencies": {
     "eslint": ">=8"
-  },
-  "upem": {
-    "policies": [
-      {
-        "package": "camelcase",
-        "policy": "wanted",
-        "because": "version 7 will only exports esm - and we use cjs and don't transpile (yet)"
-      },
-      {
-        "package": "decamelize",
-        "policy": "wanted",
-        "because": "version 5 only exports esm - and we use cjs and don't transpile (yet)"
-      }
-    ]
   },
   "files": [
     "lib",
