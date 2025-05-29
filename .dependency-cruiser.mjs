@@ -171,6 +171,32 @@ export default {
 
     prefix: "https://github.com/sverweij/eslint-plugin-budapestian/blob/main/",
 
+    enhancedResolveOptions: {
+      exportsFields: ["exports"],
+      aliasFields: ["browser"],
+      conditionNames: ["import", "require"],
+      extensions: [
+        ".cjs",
+        ".mjs",
+        ".js",
+        // ".jsx",
+        // ".ts",
+        // ".cts",
+        // ".mts",
+        // ".tsx",
+        ".d.ts",
+        // ".d.cts",
+        ".d.mts",
+        // ".coffee",
+        // ".litcoffee",
+        // "cofee.md",
+        // ".csx",
+        // ".cjsx",
+        // ".vue",
+        // ".svelte"
+      ],
+    },
+
     combinedDependencies: true,
     reporterOptions: {
       dot: {
