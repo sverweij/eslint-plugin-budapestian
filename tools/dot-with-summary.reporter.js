@@ -10,7 +10,6 @@ const gTimeFormat = new Intl.NumberFormat(LOCALE, {
   maximumFractionDigits: 0,
 }).format;
 
-// eslint-disable-next-line max-lines-per-function, complexity, import/exports-last
 export default async function* dotWithSummaryReporter(pSource) {
   let lFailStack = [];
   let lDiagnosticStack = [];
@@ -79,7 +78,6 @@ function summarizeFailsToText(pFailEvent) {
 function diagnosticToObject(pDiagnosticEvent) {
   const lReturnValue = {};
   const [key, value] = pDiagnosticEvent.data.message.split(" ");
-  // eslint-disable-next-line security/detect-object-injection
   lReturnValue[key] = value;
   return lReturnValue;
 }

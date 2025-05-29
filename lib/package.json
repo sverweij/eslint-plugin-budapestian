@@ -1,5 +1,6 @@
 {
   "name": "eslint-plugin-budapestian",
   "version": "0.0.0",
-  "main": "index.js"
+  "main": "index.js",
+  "type": "module"
 }

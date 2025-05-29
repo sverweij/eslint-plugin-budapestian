@@ -1,19 +1,19 @@
 import rule from "#rules/global-variable-pattern-rule.js";
 import { RuleTester } from "eslint";
-import { createRequire } from "node:module";
-
-const require = createRequire(import.meta.url);
+import parser from "@typescript-eslint/parser";
 
 const ruleTesterTypeScriptParser = new RuleTester({
-  parser: require.resolve("@typescript-eslint/parser"),
-  parserOptions: {
+  languageOptions: {
+    parser,
     ecmaVersion: 2018,
+    sourceType: "module",
   },
 });
 
 const ruleTesterDefaultParser = new RuleTester({
-  parserOptions: {
+  languageOptions: {
     ecmaVersion: 2018,
+    sourceType: "module",
   },
 });
 
