@@ -32,7 +32,7 @@
     "prepack": "clean-pkg-json --dry | jq '.scripts = {test: \"echo for test, build and static analysis scripts: see the github repository\"}' > smaller-package.json && mv smaller-package.json package.json",
     "postpack": "git restore package.json",
     "scm:stage": "git add .",
-    "test": "node --import ./tools/set-up-rule-tester-for-node-test.mjs --test-reporter ./tools/dot-with-summary.reporter.mjs --test test/lib/*.spec.mjs test/lib/**/*.spec.mjs",
+    "test": "node --import ./tools/set-up-rule-tester-for-node-test.js --test-reporter ./tools/dot-with-summary.reporter.js --test test/lib/*.spec.js test/lib/**/*.spec.js",
     "test:cover": "c8 --check-coverage --statements 100 --branches 100 --functions 100 --lines 100 --reporter text-summary --reporter html npm test",
     "update-dependencies": "npm-run-all upem:update upem:install lint:fix test",
     "upem-outdated": "npm outdated --json --long | upem --dry-run",
