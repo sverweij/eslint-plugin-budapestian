@@ -35,7 +35,7 @@ jobs:
           key: ${{matrix.node-version}}@${{matrix.platform}}-build-${{hashFiles('package-lock.json')}}
           restore-keys: |
             ${{matrix.node-version}}@${{matrix.platform}}-build-
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{matrix.node-version}}
       - run: npm install
@@ -74,7 +74,7 @@ jobs:
           key: ${{env.NODE_LATEST}}@${{matrix.platform}}-build-${{hashFiles('package-lock.json')}}
           restore-keys: |
             ${{env.NODE_LATEST}}@${{matrix.platform}}-build-
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{env.NODE_LATEST}}
       - run: npm install
