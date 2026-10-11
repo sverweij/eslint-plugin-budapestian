@@ -21,8 +21,8 @@
   },
   "scripts": {
     "check": "npm-run-all lint test:cover",
-    "depcruise": "depcruise lib test",
-    "depcruise:graph": "depcruise --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
+    "depcruise": "dependency-cruiser lib test",
+    "depcruise:graph": "dependency-cruiser --output-type dot lib test | dot -T svg | tee docs/dependency-graph.svg | depcruise-wrap-stream-in-html > docs/dependency-graph.html",
     "format": "prettier --log-level=warn --write lib test *.js *.json .github",
     "format:check": "prettier --log-level=warn --check lib test *.js *.json .github",
     "lint": "npm-run-all lint:eslint format:check depcruise",
@@ -45,25 +45,39 @@
     "decamelize": "6.0.1"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "8.47.0",
-    "c8": "10.1.3",
-    "clean-pkg-json": "1.3.0",
-    "dependency-cruiser": "17.3.1",
+    "@typescript-eslint/parser": "8.71.1",
+    "c8": "12.0.0",
+    "clean-pkg-json": "2.0.0",
+    "dependency-cruiser": "18.5.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-budapestian": "file:./lib",
-    "eslint-plugin-eslint-plugin": "7.2.0",
-    "globals": "16.5.0",
+    "eslint-plugin-eslint-plugin": "7.6.2",
+    "globals": "17.13.0",
     "npm-run-all": "4.1.5",
-    "prettier": "3.6.2",
-    "typescript": "5.9.3",
-    "upem": "10.0.1"
+    "prettier": "3.9.10",
+    "typescript": "^6.0.0",
+    "upem": "11.0.1"
   },
   "imports": {
     "#*": "./lib/*"
   },
   "peerDependencies": {
     "eslint": ">=8"
+  },
+  "upem": {
+    "policies": [
+      {
+        "package": "eslint",
+        "policy": "wanted",
+        "because": ">= 10 seems to require a complete rewrite of the plugin, which we'll do maybe someday."
+      },
+      {
+        "package": "typescript",
+        "policy": "wanted",
+        "because": ">= 7 (tsgo) doesn't have an API yet our tooling can rely on"
+      }
+    ]
   },
   "files": [
     "lib",

@@ -354,6 +354,7 @@ ruleTesterTypeScriptParser.run(
         code: "for(let counter of [7,8,9]){}",
         output: "for(let lCounter of [7,8,9]){}",
         errors: [
+          // eslint-disable-next-line eslint-plugin/require-test-error-positions
           {
             message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
             type: "ForOfStatement",
@@ -365,6 +366,7 @@ ruleTesterTypeScriptParser.run(
         output:
           "function f(){for(let lCounter of [7,8,9]){var i = lCounter + i}}",
         errors: [
+          // eslint-disable-next-line eslint-plugin/require-test-error-positions
           {
             message: `local variable 'counter' should be pascal case and start with a 'l': 'lCounter'`,
             type: "ForOfStatement",
